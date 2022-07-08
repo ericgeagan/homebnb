@@ -5,4 +5,54 @@ class Home(db.Model):
 	__tablename__ = 'homes'
 
 	id = db.Column(db.Integer, primary_key=True)
-	user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+	user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+	name = db.Column(db.String(200), nullable=False)
+	address = db.Column(db.String(200), nullable=False)
+	city = db.Column(db.String(200), nullable=False)
+	state = db.Column(db.String(200), nullable=False)
+	zipcode = db.Column(db.Integer, nullable=False)
+	bedrooms = db.Column(db.Integer, nullable=False)
+	bathrooms = db.Column(db.Integer, nullable=False)
+	beds = db.Column(db.Integer, nullable=False)
+	max_guests = db.Column(db.Integer, nullable=False)
+	description = db.Column(db.Text, nullable=False)
+	price = db.Column(db.Float, nullable=False)
+	tv = db.Column(db.Boolean, nullable=False)
+	ac = db.Column(db.Boolean, nullable=False)
+	wifi = db.Column(db.Boolean, nullable=False)
+	workspace = db.Column(db.Boolean, nullable=False)
+	kitchen = db.Column(db.Boolean, nullable=False)
+	fridge = db.Column(db.Boolean, nullable=False)
+	microwave = db.Column(db.Boolean, nullable=False)
+	utensils = db.Column(db.Boolean, nullable=False)
+	grill = db.Column(db.Boolean, nullable=False)
+	parking = db.Column(db.Boolean, nullable=False)
+
+	user = db.relationship("User", back_populates='homes')
+
+	def to_dict(self):
+		return {
+			"id": self.id,
+			"user_id": self.user_id,
+			"name": self.name,
+			"address": self.address,
+			"city": self.city,
+			"state": self.state,
+			"zipcode": self.zipcode,
+			"bedrooms": self.bedrooms,
+			"bathrooms": self.bathrooms,
+			"beds": self.beds,
+			"max_guests": self.max_guests,
+			"description": self.description,
+			"price": self.price,
+			"tv": self.tv,
+			"ac": self.ac,
+			"wifi": self.wifi,
+			"workspace": self.workspace,
+			"kitchen": self.kitchen,
+			"fridge": self.fridge,
+			"microwave": self.microwave,
+			"utensils": self.utensils,
+			"grill": self.grill,
+			"parking": self.parking
+		}
