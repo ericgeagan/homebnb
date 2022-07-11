@@ -27,6 +27,11 @@ class Home(db.Model):
 	utensils = db.Column(db.Boolean, nullable=False)
 	grill = db.Column(db.Boolean, nullable=False)
 	parking = db.Column(db.Boolean, nullable=False)
+	pic1 = db.column(db.Text)
+	# pic2 = db.column(db.Text)
+	# pic3 = db.column(db.Text)
+	# pic4 = db.column(db.Text)
+	# pic5 = db.column(db.Text)
 
 	user = db.relationship("User", back_populates='homes')
 
@@ -54,5 +59,10 @@ class Home(db.Model):
 			"microwave": self.microwave,
 			"utensils": self.utensils,
 			"grill": self.grill,
-			"parking": self.parking
+			"parking": self.parking,
+			"pic1": self.pic1,
+			# "pic2": self.pic2,
+			# "pic3": self.pic3,
+			# "pic4": self.pic4,
+			# "pic5": self.pic5,
 		}
