@@ -1,9 +1,25 @@
 const ADD_HOME = '/home/add'
+const GET_HOMES = '/home/all'
 
 const actionAddHome = home => {
 	return {
 		type: ADD_HOME,
 		home
+	}
+}
+
+const actionAllHome = homes => {
+	return {
+		type: GET_HOMES,
+		homes
+	}
+}
+
+export const getAllHomesThunk = () => async dispatch => {
+	const response = await fetch('/api/books')
+	const data = await response.json()
+	if (response.ok) {
+		dispatch(actionAllHome(data))
 	}
 }
 
@@ -82,6 +98,13 @@ const homeReducer = (state = {}, action) => {
 	switch (action.type) {
 		case ADD_HOME:
 			newState = { ...state, [action.home.id]: action.home }
+			return newState
+		case GET_HOMES:
+			newState = { ...state }
+			console.log(action.homes)
+			action.homes.homes.forEach(home => {
+				newState[home.id] = home
+			})
 			return newState
 		default:
 			return state

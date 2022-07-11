@@ -27,7 +27,7 @@ class Home(db.Model):
 	utensils = db.Column(db.Boolean, nullable=False)
 	grill = db.Column(db.Boolean, nullable=False)
 	parking = db.Column(db.Boolean, nullable=False)
-	pic1 = db.column(db.Text)
+	pic1 = db.Column(db.Text, nullable=False)
 	# pic2 = db.column(db.Text)
 	# pic3 = db.column(db.Text)
 	# pic4 = db.column(db.Text)
