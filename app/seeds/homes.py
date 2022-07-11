@@ -2,7 +2,7 @@ from app.models import db, Home
 
 
 # Adds a demo user, you can add other users here if you want
-def seed_users():
+def seed_homes():
     test = Home(
 			user_id = 1,
 			name = 'testHome',
@@ -38,6 +38,6 @@ def seed_users():
 # TRUNCATE Removes all the data from the table, and RESET IDENTITY
 # resets the auto incrementing primary key, CASCADE deletes any
 # dependent entities
-def undo_users():
+def undo_homes():
     db.session.execute('TRUNCATE homes RESTART IDENTITY CASCADE;')
     db.session.commit()
