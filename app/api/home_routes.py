@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, request, jsonify
 from flask_login import login_required
 from app.models import Home, db
 from app.forms import HomeForm
@@ -41,7 +41,9 @@ def post_home():
 		pic1 = upload['url']
 		form = HomeForm()
 		form['csrf_token'].data = request.cookies['csrf_token']
+		print(form.data)
 		if form.validate_on_submit():
+			print('!!!!! WE HERE6')
 
 			new_home = Home(
 				user_id=form.data['user_id'],

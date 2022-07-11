@@ -6,6 +6,7 @@ import { addHomeThunk } from "../../../store/homes";
 const NewHome = () => {
 	const sessionUser = useSelector(state => state.session.user)
 	const history = useHistory()
+	const dispatch = useDispatch()
 	const [name, setName] = useState('')
 	const [address, setAddress] = useState('')
 	const [city, setCity] = useState('')
@@ -257,6 +258,7 @@ const NewHome = () => {
 					type='file'
 					placeholder="Image 1"
 				></input>
+				<button type='submit'>Submit</button>
 			</form>
 		</div>
 	)
