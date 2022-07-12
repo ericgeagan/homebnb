@@ -1,35 +1,43 @@
-import React, { useState } from "react";
-import { useHistory } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { useHistory, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
-import { addHomeThunk } from "../../../store/homes";
+import { editHomeThunk } from "../../../store/homes";
 
-const NewHome = () => {
+const EditHome = () => {
 	const sessionUser = useSelector(state => state.session.user)
+	const homeId = useParams().id
+	const thisHome = useSelector(state => state.homes)[homeId]
 	const history = useHistory()
 	const dispatch = useDispatch()
-	const [name, setName] = useState('')
-	const [address, setAddress] = useState('')
-	const [city, setCity] = useState('')
-	const [state, setState] = useState('')
-	const [zipcode, setZipcode] = useState('')
-	const [bedrooms, setBedrooms] = useState(0)
-	const [bathrooms , setBathrooms] = useState(0)
-	const [beds, setBeds] = useState(0)
-	const [max_guests, setMax_guests] = useState(0)
-	const [description, setDescription] = useState('')
-	const [price, setPrice] = useState(0)
-	const [tv, setTv] = useState(false)
-	const [ac, setAc] = useState(false)
-	const [wifi, setWifi] = useState(false)
-	const [workspace, setWorkspace] = useState(false)
-	const [kitchen, setKitchen] = useState(false)
-	const [fridge, setFridge] = useState(false)
-	const [microwave, setMicrowave] = useState(false)
-	const [utensils, setUtensils] = useState(false)
-	const [grill, setGrill] = useState(false)
-	const [parking, setParking] = useState(false)
+	const [name, setName] = useState(thisHome?.name || '')
+	const [address, setAddress] = useState(thisHome?.address || '')
+	const [city, setCity] = useState(thisHome?.city || '')
+	const [state, setState] = useState(thisHome?.state || '')
+	const [zipcode, setZipcode] = useState(thisHome?.zipcode || '')
+	const [bedrooms, setBedrooms] = useState(thisHome?.bedrooms || 0)
+	const [bathrooms , setBathrooms] = useState(thisHome?.bathrooms || 0)
+	const [beds, setBeds] = useState(thisHome?.beds || 0)
+	const [max_guests, setMax_guests] = useState(thisHome?.max_guests || 0)
+	const [description, setDescription] = useState(thisHome?.description || '')
+	const [price, setPrice] = useState(thisHome?.price || 0)
+	const [tv, setTv] = useState(thisHome?.tv || false)
+	const [ac, setAc] = useState(thisHome?.ac || false)
+	const [wifi, setWifi] = useState(thisHome?.wifi || false)
+	const [workspace, setWorkspace] = useState(thisHome?.workspace || false)
+	const [kitchen, setKitchen] = useState(thisHome?.kitchen || false)
+	const [fridge, setFridge] = useState(thisHome?.fridge || false)
+	const [microwave, setMicrowave] = useState(thisHome?.microwave || false)
+	const [utensils, setUtensils] = useState(thisHome?.utensils || false)
+	const [grill, setGrill] = useState(thisHome?.grill || false)
+	const [parking, setParking] = useState(thisHome?.parking || false)
 	let [pic1, setPic1] = useState(null)
 	const [errors, setErrors] = useState([])
+
+	useEffect(() => {
+		if (thisHome?.user_id !== sessionUser?.id) {
+			history.push('/')
+		}
+	}, [history, sessionUser?.id, thisHome?.user_id])
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
@@ -49,9 +57,10 @@ const NewHome = () => {
 			pic1 = 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-22415475/original/025cd735-d7b3-48bf-ab5e-8803b4d4175a.jpeg?im_w=1200'
 		}
 
-		const user_id = sessionUser.id
+		const user_id = sessionUser?.id
 
 		const newHome = {
+			homeId,
 			user_id,
 			name,
 			address,
@@ -77,7 +86,7 @@ const NewHome = () => {
 			pic1,
 		}
 
-		const data = await dispatch(addHomeThunk(newHome))
+		const data = await dispatch(editHomeThunk(newHome))
 		if (data) {
 			setErrors(data)
 		} else {
@@ -191,70 +200,70 @@ const NewHome = () => {
 					name='tv'
 					value={tv}
 					onChange={e => setTv(e.target.value)}
-					type='radio'
+					type='checkbox'
 				></input>
 				<label>AC</label>
 				<input
 					name='ac'
 					value={ac}
 					onChange={e => setAc(e.target.value)}
-					type='radio'
+					type='checkbox'
 				></input>
 				<label>Wifi</label>
 				<input
 					name='wifi'
 					value={wifi}
 					onChange={e => setWifi(e.target.value)}
-					type='radio'
+					type='checkbox'
 				></input>
 				<label>Workspace</label>
 				<input
 					name='workspace'
 					value={workspace}
 					onChange={e => setWorkspace(e.target.value)}
-					type='radio'
+					type='checkbox'
 				></input>
 				<label>Kitchen</label>
 				<input
 					name='kitchen'
 					value={kitchen}
 					onChange={e => setKitchen(e.target.value)}
-					type='radio'
+					type='checkbox'
 				></input>
 				<label>Fridge</label>
 				<input
 					name='fridge'
 					value={fridge}
 					onChange={e => setFridge(e.target.value)}
-					type='radio'
+					type='checkbox'
 				></input>
 				<label>Microwave</label>
 				<input
 					name='microwave'
 					value={microwave}
 					onChange={e => setMicrowave(e.target.value)}
-					type='radio'
+					type='checkbox'
 				></input>
 				<label>Utensils</label>
 				<input
 					name='utensils'
 					value={utensils}
 					onChange={e => setUtensils(e.target.value)}
-					type='radio'
+					type='checkbox'
 				></input>
 				<label>Grill</label>
 				<input
 					name='grill'
 					value={grill}
 					onChange={e => setGrill(e.target.value)}
-					type='radio'
+					type='checkbox'
 				></input>
 				<label>Parking</label>
 				<input
 					name='parking'
 					value={parking}
 					onChange={e => setParking(e.target.value)}
-					type='radio'
+					type='checkbox'
 				></input>
 				<label>Image 1</label>
 				<input
@@ -270,4 +279,4 @@ const NewHome = () => {
 	)
 }
 
-export default NewHome
+export default EditHome

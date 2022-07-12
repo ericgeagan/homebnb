@@ -9,6 +9,9 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import NewHome from './components/homes/NewHome/NewHome';
+import { getAllHomesThunk } from './store/homes';
+import HomePage from './components/HomePage/HomePage';
+import EditHome from './components/homes/EditHome/EditHome';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -17,6 +20,7 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
+      await dispatch(getAllHomesThunk())
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -38,6 +42,9 @@ function App() {
         <Route path='/homes/new' exact={true}>
           <NewHome />
         </Route>
+        <Route path='/homes/:id/edit' exact={true}>
+          <EditHome />
+        </Route>
         {/* <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
@@ -45,7 +52,7 @@ function App() {
           <User />
         </ProtectedRoute> */}
         <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <HomePage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
