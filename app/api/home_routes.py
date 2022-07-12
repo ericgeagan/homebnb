@@ -127,7 +127,7 @@ def edit_home(id):
 		pic1 = upload['url']
 		form = HomeForm()
 		form['csrf_token'].data = request.cookies['csrf_token']
-		print(form.data)
+		# print(form.data)
 		if form.validate_on_submit():
 			# print('!!!!! WE HERE6')
 			edit_home = Home.query.get(id)
@@ -164,7 +164,7 @@ def edit_home(id):
 
 	form = HomeForm()
 	form['csrf_token'].data = request.cookies['csrf_token']
-	print(form.data)
+	# print(form.data)
 	if form.validate_on_submit():
 		edit_home = Home.query.get(id)
 

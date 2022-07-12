@@ -40,7 +40,7 @@ const NewHome = () => {
 		!pic1.name.endsWith( "pdf") &&
 		!pic1.name.endsWith("jpeg") &&
 		!pic1.name.endsWith("gif")
-		){
+		) {
 			setErrors(['File type not allowed'])
 			return
 		}
@@ -77,7 +77,7 @@ const NewHome = () => {
 			pic1,
 		}
 
-		console.log(newHome)
+		// console.log(newHome)
 		const data = await dispatch(addHomeThunk(newHome))
 		if (data) {
 			setErrors(data)
