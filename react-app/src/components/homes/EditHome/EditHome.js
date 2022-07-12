@@ -195,74 +195,74 @@ const EditHome = () => {
 					onChange={e => setPrice(e.target.value)}
 					type='number'
 				></input>
-				<label>TV</label>
+								<label>TV</label>
 				<input
 					name='tv'
-					value={tv}
-					onChange={e => setTv(e.target.value)}
+					checked={tv}
+					onChange={e => setTv(!tv)}
 					type='checkbox'
 				></input>
 				<label>AC</label>
 				<input
 					name='ac'
-					value={ac}
-					onChange={e => setAc(e.target.value)}
+					checked={ac}
+					onChange={e => setAc(!ac)}
 					type='checkbox'
 				></input>
 				<label>Wifi</label>
 				<input
 					name='wifi'
-					value={wifi}
-					onChange={e => setWifi(e.target.value)}
+					checked={wifi}
+					onChange={e => setWifi(!wifi)}
 					type='checkbox'
 				></input>
 				<label>Workspace</label>
 				<input
 					name='workspace'
-					value={workspace}
-					onChange={e => setWorkspace(e.target.value)}
+					checked={workspace}
+					onChange={e => setWorkspace(!workspace)}
 					type='checkbox'
 				></input>
 				<label>Kitchen</label>
 				<input
 					name='kitchen'
-					value={kitchen}
-					onChange={e => setKitchen(e.target.value)}
+					checked={kitchen}
+					onChange={e => setKitchen(!kitchen)}
 					type='checkbox'
 				></input>
 				<label>Fridge</label>
 				<input
 					name='fridge'
-					value={fridge}
-					onChange={e => setFridge(e.target.value)}
+					checked={fridge}
+					onChange={e => setFridge(!fridge)}
 					type='checkbox'
 				></input>
 				<label>Microwave</label>
 				<input
 					name='microwave'
-					value={microwave}
-					onChange={e => setMicrowave(e.target.value)}
+					checked={microwave}
+					onChange={e => setMicrowave(!microwave)}
 					type='checkbox'
 				></input>
 				<label>Utensils</label>
 				<input
 					name='utensils'
-					value={utensils}
-					onChange={e => setUtensils(e.target.value)}
+					checked={utensils}
+					onChange={e => setUtensils(!utensils)}
 					type='checkbox'
 				></input>
 				<label>Grill</label>
 				<input
 					name='grill'
-					value={grill}
-					onChange={e => setGrill(e.target.value)}
+					checked={grill}
+					onChange={e => setGrill(!grill)}
 					type='checkbox'
 				></input>
 				<label>Parking</label>
 				<input
 					name='parking'
-					value={parking}
-					onChange={e => setParking(e.target.value)}
+					checked={parking}
+					onChange={e => setParking(!parking)}
 					type='checkbox'
 				></input>
 				<label>Image 1</label>
