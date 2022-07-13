@@ -25,7 +25,7 @@ const HomeCard = ({home}) => {
 				<div>{home.address}</div>
 				<div>Wifi: {home.wifi ? 'Yes' : 'No'}</div>
 				{home?.user_id === sessionUser?.id ? <button onClick={() => handleEditButton()}>Edit</button> : <div></div> }
-				<button onClick={() => handleDelete()}>Delete</button>
+				{home?.user_id === sessionUser?.id ? <button onClick={() => handleDelete()}>Delete</button> : <div></div> }
 			</div>
 		</div>
 	)

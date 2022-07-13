@@ -12,7 +12,7 @@ class Booking(db.Model):
 	home_id = db.Column(db.Integer, db.ForeignKey('homes.id'), nullable=False)
 
 	user = db.relationship("User", back_populates='bookings')
-	home = db.relationship("Home", back_populates='bookings', cascade='delete, all')
+	home = db.relationship("Home", back_populates='bookings')
 
 	def to_dict(self):
 		return {

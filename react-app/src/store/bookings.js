@@ -32,7 +32,7 @@ export const getAllBookingsThunk = () => async dispatch => {
 }
 
 export const deleteBookingThunk = bookingId => async dispatch => {
-	const response = await fetch(`/api/homes/${bookingId}`, {
+	const response = await fetch(`/api/bookings/${bookingId}`, {
 		method: 'DELETE'
 	})
 	if (response.ok) {

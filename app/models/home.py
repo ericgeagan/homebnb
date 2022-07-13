@@ -34,7 +34,7 @@ class Home(db.Model):
 	# pic5 = db.column(db.Text)
 
 	user = db.relationship("User", back_populates='homes')
-	bookings = db.relationship('Booking', back_populates='home')
+	bookings = db.relationship('Booking', back_populates='home', cascade='delete, all')
 
 	def to_dict(self):
 		return {

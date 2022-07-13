@@ -1,8 +1,8 @@
-"""newBookings
+"""fullBookings
 
-Revision ID: c8d3828aec04
+Revision ID: 9a6c24df8582
 Revises: 
-Create Date: 2022-07-12 11:19:30.857145
+Create Date: 2022-07-13 02:00:20.658799
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'c8d3828aec04'
+revision = '9a6c24df8582'
 down_revision = None
 branch_labels = None
 depends_on = None

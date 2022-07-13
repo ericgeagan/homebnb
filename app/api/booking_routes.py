@@ -39,7 +39,7 @@ def post_booking():
 		return new_booking.to_dict()
 	return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-@booking_routes.route('', methods=['PUT'])
+@booking_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def edit_booking(id):
 	form = BookingForm()
@@ -54,7 +54,7 @@ def edit_booking(id):
 		return bookshelf.to_dict()
 	return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-@booking_routes.route('', methods=['DELETE'])
+@booking_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_booking(id):
 	booking = Booking.query.get(id)
