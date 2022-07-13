@@ -12,6 +12,9 @@ import NewHome from './components/homes/NewHome/NewHome';
 import { getAllHomesThunk } from './store/homes';
 import HomePage from './components/HomePage/HomePage';
 import EditHome from './components/homes/EditHome/EditHome';
+import { getAllBookingsThunk } from './store/bookings';
+import HomeListing from './components/homes/HomeListing/HomeListing';
+import BookingListing from './components/bookings/BookingListing/BookingListing';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -21,6 +24,7 @@ function App() {
     (async() => {
       await dispatch(authenticate());
       await dispatch(getAllHomesThunk())
+      await dispatch(getAllBookingsThunk())
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -42,8 +46,14 @@ function App() {
         <Route path='/homes/new' exact={true}>
           <NewHome />
         </Route>
+        <Route path='/homes/:id' exact={true}>
+          <HomeListing />
+        </Route>
         <Route path='/homes/:id/edit' exact={true}>
           <EditHome />
+        </Route>
+        <Route path='/bookings' exact={true}>
+          <BookingListing />
         </Route>
         {/* <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
