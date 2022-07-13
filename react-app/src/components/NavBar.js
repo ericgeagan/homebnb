@@ -23,10 +23,20 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
+          <NavLink to='/homes/new' exact={true} activeClassName='active'>
+            Add Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to='/bookings' exact={true} activeClassName='active'>
+            My Bookings
+          </NavLink>
+        </li>
+        {/* <li>
           <NavLink to='/users' exact={true} activeClassName='active'>
             Users
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <LogoutButton />
         </li>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import { deleteHomeThunk } from '../../store/homes'
 import './homeCard.css'
 
@@ -20,7 +20,9 @@ const HomeCard = ({home}) => {
 	return (
 		<div>
 			<div>
-				<img id='home-card-image' src={home.pic1}></img>
+				<NavLink to={`/homes/${home.id}`} >
+					<img id='home-card-image' src={home.pic1}></img>
+				</NavLink>
 				<div>{home.name}</div>
 				<div>{home.address}</div>
 				<div>Wifi: {home.wifi ? 'Yes' : 'No'}</div>
