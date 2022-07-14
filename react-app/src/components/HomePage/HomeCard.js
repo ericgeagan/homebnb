@@ -21,11 +21,10 @@ const HomeCard = ({home}) => {
 		<div>
 			<div>
 				<NavLink to={`/homes/${home.id}`} >
-					<img id='home-card-image' src={home.pic1}></img>
+					<img id='home-card-image' alt={home.name} src={home.pic1}></img>
 				</NavLink>
-				<div>{home.name}</div>
-				<div>{home.address}</div>
-				<div>Wifi: {home.wifi ? 'Yes' : 'No'}</div>
+				<div>{home.city}, {home.state}</div>
+				<div>${home.price} night</div>
 				{home?.user_id === sessionUser?.id ? <button onClick={() => handleEditButton()}>Edit</button> : <div></div> }
 				{home?.user_id === sessionUser?.id ? <button onClick={() => handleDelete()}>Delete</button> : <div></div> }
 			</div>

@@ -51,7 +51,7 @@ def edit_booking(id):
 		booking.start_date = form.data['start_date']
 		booking.end_date = form.data['end_date']
 		db.session.commit()
-		return bookshelf.to_dict()
+		return booking.to_dict()
 	return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @booking_routes.route('/<int:id>', methods=['DELETE'])

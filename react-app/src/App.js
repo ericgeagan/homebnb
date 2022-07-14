@@ -5,8 +5,8 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
+// import UsersList from './components/UsersList';
+// import User from './components/User';
 import { authenticate } from './store/session';
 import NewHome from './components/homes/NewHome/NewHome';
 import { getAllHomesThunk } from './store/homes';
@@ -15,6 +15,7 @@ import EditHome from './components/homes/EditHome/EditHome';
 import { getAllBookingsThunk } from './store/bookings';
 import HomeListing from './components/homes/HomeListing/HomeListing';
 import BookingListing from './components/bookings/BookingListing/BookingListing';
+import EditBooking from './components/bookings/EditBooking/EditBooking';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -54,6 +55,9 @@ function App() {
         </Route>
         <Route path='/bookings' exact={true}>
           <BookingListing />
+        </Route>
+        <Route path='/bookings/:id/edit' exact={true}>
+          <EditBooking />
         </Route>
         {/* <ProtectedRoute path='/users' exact={true} >
           <UsersList/>

@@ -1,7 +1,8 @@
 import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory, useParams } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import { deleteBookingThunk } from "../../../store/bookings"
+import './bookingListing.css'
 
 const BookingListing = () => {
 	const history = useHistory()
@@ -18,16 +19,16 @@ const BookingListing = () => {
 		await dispatch(deleteBookingThunk(bookingId))
 	}
 
-	const handleEditButton = () => {
-		
+	const handleEditButton = (bookingId) => {
+		history.push(`/bookings/${bookingId}/edit`)
 	}
 
 	return (
-		<div>
+		<div id='container'>
 			{bookings.map(booking => (
 				<div>
 					<div>{booking.guests} Guests at {homes[booking.home_id].name}</div>
-					<button onClick={() => handleEditButton()}>Edit</button>
+					<button onClick={() => handleEditButton(booking.id)}>Edit</button>
 					<button onClick={() => handleDelete(booking.id)}>Delete</button>
 				</div>
 			))}

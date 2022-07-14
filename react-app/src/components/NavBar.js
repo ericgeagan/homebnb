@@ -1,9 +1,23 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 
 const NavBar = () => {
+  const [logged, setLogged] = useState(false)
+  const [display, setDisplay] = useState(true)
+
+  const session = useSelector((state) => state.session);
+
+  useEffect(() => {
+    setLogged(session?.user ? true : false)
+  }, [session])
+
+  const showProfile = () => {
+    setDisplay(!display)
+  }
+
   return (
     <nav>
       <ul>
