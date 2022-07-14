@@ -39,7 +39,7 @@ h1 {
 }
 
 #details-header {
-	border-bottom: 1px solid grey;
+	border-bottom: 1px solid lightgrey;
 }
 
 #details-amenities-header {
@@ -53,18 +53,79 @@ h1 {
 }
 
 #price {
+	display: flex;
 	margin-bottom: 24px;
+	align-items: baseline;
+}
+
+#price-cost {
+	font-weight: 600;
+	font-size: 22px;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+	line-height: 26px;
+	color: rgb(34, 34, 34);
+}
+
+#price-night {
+	white-space: nowrap;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 20px;
+	color: rgb(34, 34, 34);
+	font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 #dates {
 	display: flex;
 }
 
+#input-div {
+	border: 1px solid lightgrey;
+	border-radius: 5px;
+	width: 150px;
+}
+
+#input-div > div {
+	padding: 12px 12px 0 12px;
+	font-size: 10px;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+	font-weight: bold;
+	line-height: 12px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-align: left;
+}
+
+#input-div > input {
+	padding: 0px 12px 10px 12px;
+	border: none;
+}
+
+#input-div-guests {
+	border: 1px solid lightgrey;
+	border-radius: 5px;
+	width: 300px;
+	width: 278px;
+	padding: 12px;
+	margin-bottom: 15px;
+}
+
+#guests-div {
+	padding-bottom: 5px;
+	font-size: 10px;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+	font-weight: bold;
+	line-height: 12px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-align: left;
+}
+
 #reserve {
 	background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
 	border: none;
 	border-radius: 5px;
-	width: 322px;
+	width: 304px;
 	height: 48px;
 	font-family: 'Roboto','Helvetica Neue', sans-serif;
 	font-size: 16px;
@@ -72,8 +133,61 @@ h1 {
 	font-weight: 600;
 	color: white;
 	cursor: pointer;
+	margin-bottom: 16px;
 }
 
 #reserve:hover {
 	background-image: radial-gradient(circle at center, #FF385C 0%, #E61E4D 27.5%, #E31C5F 40%, #D70466 57.5%, #BD1E59 75%, #BD1E59 100% );
+}
+
+#no-charge {
+	text-align: center;
+	white-space: normal;
+	font-family: 'Roboto','Helvetica Neue', sans-serif;
+	font-weight: 400;
+	font-size: 14px;
+	margin-bottom: 25px;
+}
+
+#costs-subtotal {
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 16px;
+}
+
+#price-per-night {
+	color: rgb(34, 34, 34);
+	font-size: 16px;
+	font-weight: 400;
+	font-family: 'Roboto','Helvetica Neue', sans-serif;
+	line-height: 20px;
+}
+
+#total {
+	color: rgb(34, 34, 34);
+	font-size: 16px;
+	font-weight: 400;
+	font-family: 'Roboto','Helvetica Neue', sans-serif;
+	line-height: 20px;
+}
+
+#costs-service {
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 24px;
+	border-bottom: 1px solid lightgrey;
+}
+
+#costs-total {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 24px;
+}
+
+#total-tag {
+	color: rgb(34, 34, 34);
+	font-size: 16px;
+	font-weight: 600;
+	font-family: 'Roboto','Helvetica Neue', sans-serif;
+	line-height: 20px;
 }

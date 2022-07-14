@@ -10,13 +10,21 @@ const HomeListing = () => {
 	const home_id = useParams().id
 	const thisHome = useSelector(state => state.homes)[home_id]
   const sessionUser = useSelector(state => state.session.user)
-	const [guests, setGuests] = useState(0)
-	const [start_date, setStart_date] = useState('')
-	const [end_date, setEnd_date] = useState('')
+	const [guests, setGuests] = useState(1)
+	const [start_date, setStart_date] = useState(new Date().toISOString().substring(0, 10))
+	const [end_date, setEnd_date] = useState(new Date(new Date().getTime() + (3 * 24 * 60 * 60 * 1000)).toISOString().substring(0, 10))
 	const [errors, setErrors] = useState([])
 
 	if (!thisHome) {
 		history.push('/')
+	}
+
+	const dateDiff = (start, end) => {
+		const startDate = new Date(start)
+		const endDate = new Date(end)
+		const diffTime = Math.abs(endDate - startDate);
+		const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+		return diffDays
 	}
 
 	const handleSubmit = async (e) => {
@@ -62,36 +70,62 @@ const HomeListing = () => {
 					</div>
 				</div>
 				<div id='booking-form'>
-					<div id='price'>${thisHome.price} night</div>
+					<div id='price'>
+						<div id='price-cost'>	${thisHome.price}&nbsp;</div>
+						<div id='price-night'>night</div>
+					</div>
+					{errors.length > 0 && 
+						<ul>
+							<p>Please fix the following errors:</p>
+							{errors.map((error, idx) => <li key={idx}>{error}</li>)}
+						</ul>
+					}
 					<form onSubmit={e => handleSubmit(e)}>
 						<div id='dates'>
-							<label>Start Date:</label>
-							<input
-								name='start_date'
-								type='date'
-								value={start_date}
-								onChange={e => setStart_date(e.target.value)}
-							></input>
-							<label>End Date:</label>
-							<input
-								name='end_date'
-								type='date'
-								value={end_date}
-								onChange={e => setEnd_date(e.target.value)}
-							></input>
+							<div id='input-div'>
+								<div>CHECK-IN</div>
+								<input
+									name='start_date'
+									type='date'
+									value={start_date}
+									onChange={e => setStart_date(e.target.value)}
+								></input>
+							</div>
+							<div id="input-div">
+								<div>CHECKOUT</div>
+								<input
+									name='end_date'
+									type='date'
+									value={end_date}
+									onChange={e => setEnd_date(e.target.value)}
+								></input>
+							</div>
 						</div>
-						<div>
-							<label>Guests: </label>
+						<div id='input-div-guests'>
+							<div id='guests-div'>GUESTS</div>
 							<input
 								name='guests'
 								type='number'
-								min={0}
+								min={1}
 								max={thisHome.max_guests}
 								value={guests}
 								onChange={e => setGuests(e.target.value)}
 							></input>
 						</div>
 						<button id='reserve' type='submit'>Reserve</button>
+						<div id='no-charge'>You won't be charged yet</div>
+						<div id='costs-subtotal'>
+							<div id='price-per-night'>${thisHome.price} x {dateDiff(start_date, end_date)} nights</div>
+							<div id='total'>${thisHome.price * dateDiff(start_date, end_date)}</div>
+						</div>
+						<div id='costs-service'>
+							<div id='price-per-night'>Service fee</div>
+							<div id='total'>${Math.round((thisHome.price * dateDiff(start_date, end_date)) * 0.03)}</div>
+						</div>
+						<div id='costs-total'>
+							<div id='total-tag'>Total before taxes</div>
+							<div id='total-tag'>${(thisHome.price * dateDiff(start_date, end_date)) + (Math.round((thisHome.price * dateDiff(start_date, end_date)) * 0.03))}</div>
+						</div>
 					</form>
 				</div>
 			</div>
