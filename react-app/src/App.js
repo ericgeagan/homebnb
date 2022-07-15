@@ -7,7 +7,7 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 // import UsersList from './components/UsersList';
 // import User from './components/User';
-import { authenticate } from './store/session';
+import { authenticate, getAllUsersThunk } from './store/session';
 import NewHome from './components/homes/NewHome/NewHome';
 import { getAllHomesThunk } from './store/homes';
 import HomePage from './components/HomePage/HomePage';
@@ -26,6 +26,7 @@ function App() {
       await dispatch(authenticate());
       await dispatch(getAllHomesThunk())
       await dispatch(getAllBookingsThunk())
+      await dispatch(getAllUsersThunk())
       setLoaded(true);
     })();
   }, [dispatch]);

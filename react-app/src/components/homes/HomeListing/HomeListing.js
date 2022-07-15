@@ -10,6 +10,7 @@ const HomeListing = () => {
 	const home_id = useParams().id
 	const thisHome = useSelector(state => state.homes)[home_id]
   const sessionUser = useSelector(state => state.session.user)
+	const users = useSelector(state => state.session.users)
 	const [guests, setGuests] = useState(1)
 	const [start_date, setStart_date] = useState(new Date().toISOString().substring(0, 10))
 	const [end_date, setEnd_date] = useState(new Date(new Date().getTime() + (3 * 24 * 60 * 60 * 1000)).toISOString().substring(0, 10))
@@ -56,7 +57,7 @@ const HomeListing = () => {
 			<div id='details-container'>
 				<div id='details'>
 					<div id='details-header'>
-						<div>{thisHome.name}</div>
+						<div>Entire home hosted by {users[thisHome.user_id].username}</div>
 						<div id='details-beds'>
 							<div>{thisHome.max_guests} guests</div>
 							<div>{thisHome.bedrooms} bedrooms</div>

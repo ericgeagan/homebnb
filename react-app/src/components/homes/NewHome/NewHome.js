@@ -148,6 +148,7 @@ const NewHome = () => {
 					value={bedrooms}
 					onChange={e => setBedrooms(e.target.value)}
 					type='number'
+					min={1}
 				></input>
 				<label>Bathrooms:</label>
 				<input
@@ -155,6 +156,7 @@ const NewHome = () => {
 					value={bathrooms}
 					onChange={e => setBathrooms(e.target.value)}
 					type='number'
+					min={1}
 				></input>
 				<label>Beds:</label>
 				<input
@@ -162,6 +164,7 @@ const NewHome = () => {
 					value={beds}
 					onChange={e => setBeds(e.target.value)}
 					type='number'
+					min={1}
 				></input>
 				<label>Max Guests:</label>
 				<input
@@ -169,6 +172,7 @@ const NewHome = () => {
 					value={max_guests}
 					onChange={e => setMax_guests(e.target.value)}
 					type='number'
+					min={1}
 				></input>
 				<label>Description:</label>
 				<textarea
@@ -186,6 +190,7 @@ const NewHome = () => {
 					value={price}
 					onChange={e => setPrice(e.target.value)}
 					type='number'
+					min={0.01}
 				></input>
 				<label>TV</label>
 				<input
