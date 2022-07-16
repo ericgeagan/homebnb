@@ -190,7 +190,7 @@ const NewHome = () => {
 					value={price}
 					onChange={e => setPrice(e.target.value)}
 					type='number'
-					min={0.01}
+					min={1}
 				></input>
 				<label>TV</label>
 				<input

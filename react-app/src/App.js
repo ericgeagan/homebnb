@@ -16,6 +16,8 @@ import { getAllBookingsThunk } from './store/bookings';
 import HomeListing from './components/homes/HomeListing/HomeListing';
 import BookingListing from './components/bookings/BookingListing/BookingListing';
 import EditBooking from './components/bookings/EditBooking/EditBooking';
+import gitHub from './components/images/github.png'
+import linkedin from './components/images/linkedin.png'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -40,11 +42,14 @@ function App() {
       <NavBar />
       <Switch>
         <Route path='/login' exact={true}>
-          <LoginForm />
+          <div id='forms'>
+            <LoginForm />
+            <SignUpForm />
+          </div>
         </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
+        {/* <Route path='/sign-up' exact={true}>
+          
+        </Route> */}
         <Route path='/homes/new' exact={true}>
           <NewHome />
         </Route>
@@ -70,6 +75,28 @@ function App() {
           <HomePage />
         </ProtectedRoute>
       </Switch>
+      <div id='footer'>
+        <div id='footer-container'>
+          <div id='footer-header'>Contact Info</div>
+          <div id='footer-item'>Eric Geagan</div>
+          <div id='footer-item'>ericgeagan@gmail.com</div>
+        </div>
+        <div id='footer-container'>
+          <div id='footer-header'>Developer Links</div>
+          <div>
+            <a href='https://github.com/ericgeagan'><img className='icon' src={gitHub}></img></a>
+            <a href='https://www.linkedin.com/in/eric-geagan-462323195/'><img className='icon' src={linkedin}></img></a>
+          </div>
+        </div>
+        <div id='footer-container'>
+          <div id='footer-header'>Projects</div>
+          <a id='footer-item' href='https://soundnebula.herokuapp.com/'>SoundNebula</a>
+          <a id='footer-item' href='https://better-reads-aa.herokuapp.com/'>BetterReads</a>
+        </div>
+        <div id='footer-container'>
+          <div id='footer-header'>Technologies</div>
+        </div>
+      </div>
     </BrowserRouter>
   );
 }

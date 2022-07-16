@@ -1,7 +1,8 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
 import { addBookingThunk } from "../../../store/bookings"
+import { getAllUsersThunk } from "../../../store/session"
 import './homeListing.css'
 
 const HomeListing = () => {
@@ -19,6 +20,15 @@ const HomeListing = () => {
 	if (!thisHome) {
 		history.push('/')
 	}
+
+	useEffect(() => {
+    (async() => {
+      // await dispatch(authenticate());
+      // await dispatch(getAllHomesThunk())
+      // await dispatch(getAllBookingsThunk())
+      await dispatch(getAllUsersThunk())
+    })();
+  }, [dispatch]);
 
 	const dateDiff = (start, end) => {
 		const startDate = new Date(start)
@@ -51,23 +61,36 @@ const HomeListing = () => {
 
 	return (
 		<div id='container'>
-			<h1>{thisHome.name}</h1>
+			<div id='title-name'>{thisHome.name}</div>
 			<div id='city-state'>{thisHome.city}, {thisHome.state}</div>
 			<img id='home-listing-image' src={thisHome.pic1}></img>
 			<div id='details-container'>
 				<div id='details'>
 					<div id='details-header'>
-						<div>Entire home hosted by {users[thisHome.user_id].username}</div>
+						<div id='hosted'>Entire home hosted by {users ? users[thisHome.user_id].username : ''}</div>
 						<div id='details-beds'>
-							<div>{thisHome.max_guests} guests</div>
-							<div>{thisHome.bedrooms} bedrooms</div>
-							<div>{thisHome.beds} beds</div>
-							<div>{thisHome.bathrooms} bathrooms</div>
+							<div id='details-beds-item'>{thisHome.max_guests} guests ·&nbsp;</div>
+							<div id='details-beds-item'>{thisHome.bedrooms} bedrooms ·&nbsp;</div>
+							<div id='details-beds-item'>{thisHome.beds} beds ·&nbsp;</div>
+							<div id='details-beds-item'>{thisHome.bathrooms} bathrooms</div>
 						</div>
+					</div>
+					<div>
+						<div id='details-amenities-header'>About this space</div>
+						<div id='description'>{thisHome.description}</div>
 					</div>
 					<div id='details-amenities'>
 						<div id='details-amenities-header'>What this place offers</div>
-						{thisHome.tv && <div>TV with standard cable</div>}
+						{thisHome.tv && <div id='amenity'><i className="fa-solid fa-tv"></i>&nbsp;&nbsp;TV with standard cable</div>}
+						{thisHome.ac && <div id='amenity'><i className="fa-solid fa-temperature-low"></i>&nbsp;&nbsp; Central air conditioning</div>}
+						{thisHome.wifi && <div id='amenity'><i className="fa-solid fa-wifi"></i>&nbsp;&nbsp;Wifi</div>}
+						{thisHome.workspace && <div id='amenity'><i className="fa-solid fa-briefcase"></i>&nbsp;&nbsp; Dedicated workspace</div>}
+						{thisHome.kitchen && <div id='amenity'><i className="fa-solid fa-kitchen-set"></i>&nbsp;&nbsp; Kitchen</div>}
+						{thisHome.fridge && <div id='amenity'><i className="fa-solid fa-snowflake"></i>&nbsp;&nbsp; Refrigerator</div>}
+						{thisHome.microwave && <div id='amenity'><i className="fa-solid fa-mug-hot"></i>&nbsp;&nbsp; Microwave</div>}
+						{thisHome.utensils && <div id='amenity'><i className="fa-solid fa-utensils"></i>&nbsp;&nbsp; Dishes and silverware</div>}
+						{thisHome.grill && <div id='amenity'><i className="fa-solid fa-fire-burner"></i>&nbsp;&nbsp;Barbecue utensils</div>}
+						{thisHome.parking && <div id='amenity'><i className="fa-solid fa-car"></i>&nbsp;&nbsp; Free parking</div>}
 					</div>
 				</div>
 				<div id='booking-form'>
