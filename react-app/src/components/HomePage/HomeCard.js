@@ -1,32 +1,17 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, useHistory } from 'react-router-dom'
-import { deleteHomeThunk } from '../../store/homes'
+import { NavLink } from 'react-router-dom'
 import './homeCard.css'
 
 const HomeCard = ({home}) => {
-	const sessionUser = useSelector(state => state.session.user)
-	const dispatch = useDispatch()
-	const history = useHistory()
-
-	const handleDelete = async () => {
-		await dispatch(deleteHomeThunk(home.id))
-	}
-
-	const handleEditButton = () => {
-		history.push(`/homes/${home.id}/edit`)
-	}
 
 	return (
 		<div>
 			<div>
 				<NavLink to={`/homes/${home.id}`} >
-					<img id='home-card-image' alt={home.name} src={home.pic1}></img>
+					<img id='home-card-image' alt={home.name} src={home.pic1 || 'https://user-images.githubusercontent.com/47315479/81145216-7fbd8700-8f7e-11ea-9d49-bd5fb4a888f1.png'}></img>
 				</NavLink>
 				<div>{home.city}, {home.state}</div>
 				<div>${home.price} night</div>
-				{home?.user_id === sessionUser?.id ? <button onClick={() => handleEditButton()}>Edit</button> : <div></div> }
-				{home?.user_id === sessionUser?.id ? <button onClick={() => handleDelete()}>Delete</button> : <div></div> }
 			</div>
 		</div>
 	)

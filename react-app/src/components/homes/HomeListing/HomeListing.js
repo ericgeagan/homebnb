@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
 import { addBookingThunk } from "../../../store/bookings"
+import { deleteHomeThunk } from "../../../store/homes"
 import { getAllUsersThunk } from "../../../store/session"
 import './homeListing.css'
+// import Calendar from 'react-calendar';
 
 const HomeListing = () => {
 	const history = useHistory()
@@ -12,8 +14,10 @@ const HomeListing = () => {
 	const thisHome = useSelector(state => state.homes)[home_id]
   const sessionUser = useSelector(state => state.session.user)
 	const users = useSelector(state => state.session.users)
+	const bookings = Object.values(useSelector(state => state.bookings)).filter(booking => booking.home_id === thisHome.id)
 	const [guests, setGuests] = useState(1)
 	const [start_date, setStart_date] = useState(new Date().toISOString().substring(0, 10))
+	// const [start_date, setStart_date] = useState(new Date())
 	const [end_date, setEnd_date] = useState(new Date(new Date().getTime() + (3 * 24 * 60 * 60 * 1000)).toISOString().substring(0, 10))
 	const [errors, setErrors] = useState([])
 
@@ -38,81 +42,126 @@ const HomeListing = () => {
 		return diffDays
 	}
 
+	const existingDate = (start, end) => {
+		console.log(bookings)
+		if (bookings.some(booking => {
+			const dateFrom = booking.start_date
+			const dateTo = booking.end_date
+			const dateCheck = start
+
+			const from = Date.parse(dateFrom)
+			const to = Date.parse(dateTo)
+			const check = Date.parse(dateCheck)
+
+			return check <= to && check >= from
+		})) {
+			return true
+		} else {
+			return false
+		}
+	}
+
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
 		const user_id = sessionUser.id
 
-		const newBooking = {
-			user_id,
-			home_id,
-			guests,
-			start_date,
-			end_date
-		}
-		
-		const data = await dispatch(addBookingThunk(newBooking))
-		if (data) {
-			setErrors(data)
+		if (new Date(start_date) >= new Date(end_date)) {
+			setErrors(['Checkout must be at least one day after check-in'])
+		} else if(existingDate(start_date, end_date)) {
+			setErrors(['These dates are fully booked. Please change your check-in and checkout dates.'])
 		} else {
-			alert('Booking Made!')
+			const newBooking = {
+				user_id,
+				home_id,
+				guests,
+				start_date,
+				end_date
+			}
+			
+			const data = await dispatch(addBookingThunk(newBooking))
+			if (data) {
+				setErrors(data)
+			} else {
+				// alert('Booking Made!')
+				setErrors([])
+				history.push('/bookings')
+			}
 		}
 	}
 
+	const handleDelete = async () => {
+		await dispatch(deleteHomeThunk(thisHome?.id))
+	}
+
+	const handleEditButton = () => {
+		history.push(`/homes/${thisHome?.id}/edit`)
+	}
+
+
 	return (
 		<div id='container'>
-			<div id='title-name'>{thisHome.name}</div>
-			<div id='city-state'>{thisHome.city}, {thisHome.state}</div>
-			<img id='home-listing-image' src={thisHome.pic1}></img>
+			<div id='title-name'>{thisHome?.name}</div>
+			<div id='city-state'>{thisHome?.address} {thisHome?.city}, {thisHome?.state} {thisHome?.zipcode}</div>
+			<img id='home-listing-image' src={thisHome?.pic1 || 'https://user-images.githubusercontent.com/47315479/81145216-7fbd8700-8f7e-11ea-9d49-bd5fb4a888f1.png'}></img>
 			<div id='details-container'>
 				<div id='details'>
 					<div id='details-header'>
-						<div id='hosted'>Entire home hosted by {users ? users[thisHome.user_id].username : ''}</div>
+						<div id='hosted'>Entire home hosted by {users ? users[thisHome?.user_id]?.username : ''}</div>
 						<div id='details-beds'>
-							<div id='details-beds-item'>{thisHome.max_guests} guests ·&nbsp;</div>
-							<div id='details-beds-item'>{thisHome.bedrooms} bedrooms ·&nbsp;</div>
-							<div id='details-beds-item'>{thisHome.beds} beds ·&nbsp;</div>
-							<div id='details-beds-item'>{thisHome.bathrooms} bathrooms</div>
+							<div id='details-beds-item'>{thisHome?.max_guests} guests ·&nbsp;</div>
+							<div id='details-beds-item'>{thisHome?.bedrooms} bedrooms ·&nbsp;</div>
+							<div id='details-beds-item'>{thisHome?.beds} beds ·&nbsp;</div>
+							<div id='details-beds-item'>{thisHome?.bathrooms} bathrooms</div>
 						</div>
+					</div>
+					<div id='buttons-div'>
+						{thisHome?.user_id === sessionUser?.id ? <button id='reserve' onClick={() => handleEditButton()}>Edit</button> : <div></div> }
+						{thisHome?.user_id === sessionUser?.id ? <button id='reserve' onClick={() => handleDelete()}>Delete</button> : <div></div> }
 					</div>
 					<div>
 						<div id='details-amenities-header'>About this space</div>
-						<div id='description'>{thisHome.description}</div>
+						<div id='description'>{thisHome?.description}</div>
 					</div>
 					<div id='details-amenities'>
 						<div id='details-amenities-header'>What this place offers</div>
-						{thisHome.tv && <div id='amenity'><i className="fa-solid fa-tv"></i>&nbsp;&nbsp;TV with standard cable</div>}
-						{thisHome.ac && <div id='amenity'><i className="fa-solid fa-temperature-low"></i>&nbsp;&nbsp; Central air conditioning</div>}
-						{thisHome.wifi && <div id='amenity'><i className="fa-solid fa-wifi"></i>&nbsp;&nbsp;Wifi</div>}
-						{thisHome.workspace && <div id='amenity'><i className="fa-solid fa-briefcase"></i>&nbsp;&nbsp; Dedicated workspace</div>}
-						{thisHome.kitchen && <div id='amenity'><i className="fa-solid fa-kitchen-set"></i>&nbsp;&nbsp; Kitchen</div>}
-						{thisHome.fridge && <div id='amenity'><i className="fa-solid fa-snowflake"></i>&nbsp;&nbsp; Refrigerator</div>}
-						{thisHome.microwave && <div id='amenity'><i className="fa-solid fa-mug-hot"></i>&nbsp;&nbsp; Microwave</div>}
-						{thisHome.utensils && <div id='amenity'><i className="fa-solid fa-utensils"></i>&nbsp;&nbsp; Dishes and silverware</div>}
-						{thisHome.grill && <div id='amenity'><i className="fa-solid fa-fire-burner"></i>&nbsp;&nbsp;Barbecue utensils</div>}
-						{thisHome.parking && <div id='amenity'><i className="fa-solid fa-car"></i>&nbsp;&nbsp; Free parking</div>}
+						{thisHome?.tv && <div id='amenity'><i className="fa-solid fa-tv"></i>&nbsp;&nbsp;TV with standard cable</div>}
+						{thisHome?.ac && <div id='amenity'><i className="fa-solid fa-temperature-low"></i>&nbsp;&nbsp; Central air conditioning</div>}
+						{thisHome?.wifi && <div id='amenity'><i className="fa-solid fa-wifi"></i>&nbsp;&nbsp;Wifi</div>}
+						{thisHome?.workspace && <div id='amenity'><i className="fa-solid fa-briefcase"></i>&nbsp;&nbsp; Dedicated workspace</div>}
+						{thisHome?.kitchen && <div id='amenity'><i className="fa-solid fa-kitchen-set"></i>&nbsp;&nbsp; Kitchen</div>}
+						{thisHome?.fridge && <div id='amenity'><i className="fa-solid fa-snowflake"></i>&nbsp;&nbsp; Refrigerator</div>}
+						{thisHome?.microwave && <div id='amenity'><i className="fa-solid fa-mug-hot"></i>&nbsp;&nbsp; Microwave</div>}
+						{thisHome?.utensils && <div id='amenity'><i className="fa-solid fa-utensils"></i>&nbsp;&nbsp; Dishes and silverware</div>}
+						{thisHome?.grill && <div id='amenity'><i className="fa-solid fa-fire-burner"></i>&nbsp;&nbsp;Barbecue utensils</div>}
+						{thisHome?.parking && <div id='amenity'><i className="fa-solid fa-car"></i>&nbsp;&nbsp; Free parking</div>}
 					</div>
 				</div>
 				<div id='booking-form'>
 					<div id='price'>
-						<div id='price-cost'>	${thisHome.price}&nbsp;</div>
+						<div id='price-cost'>	${thisHome?.price}&nbsp;</div>
 						<div id='price-night'>night</div>
 					</div>
-					{errors.length > 0 && 
-						<ul>
-							<p>Please fix the following errors:</p>
-							{errors.map((error, idx) => <li key={idx}>{error}</li>)}
-						</ul>
-					}
+					<div id='errors'>
+						{errors.map((error, ind) => (
+							<div className="booking-error" id='error' key={ind}>{error}</div>
+						))}
+        	</div>
 					<form onSubmit={e => handleSubmit(e)}>
 						<div id='dates'>
 							<div id='input-div'>
 								<div>CHECK-IN</div>
+								{/* <Calendar 
+									onChange={e => setStart_date(e.target.value)} 
+									value={start_date}
+								/> */}
 								<input
 									name='start_date'
 									type='date'
 									value={start_date}
 									onChange={e => setStart_date(e.target.value)}
+									min={new Date().toISOString().substring(0, 10)}
+									required
 								></input>
 							</div>
 							<div id="input-div">
@@ -122,16 +171,18 @@ const HomeListing = () => {
 									type='date'
 									value={end_date}
 									onChange={e => setEnd_date(e.target.value)}
+									min={new Date(new Date().getTime() + (1 * 24 * 60 * 60 * 1000)).toISOString().substring(0, 10)}
+									required
 								></input>
 							</div>
 						</div>
 						<div id='input-div-guests'>
-							<div id='guests-div'>GUESTS</div>
+							<div id='guests-div'>GUESTS (MAX: {thisHome?.max_guests})</div>
 							<input
 								name='guests'
 								type='number'
 								min={1}
-								max={thisHome.max_guests}
+								max={thisHome?.max_guests}
 								value={guests}
 								onChange={e => setGuests(e.target.value)}
 							></input>
@@ -139,16 +190,16 @@ const HomeListing = () => {
 						<button id='reserve' type='submit'>Reserve</button>
 						<div id='no-charge'>You won't be charged yet</div>
 						<div id='costs-subtotal'>
-							<div id='price-per-night'>${thisHome.price} x {dateDiff(start_date, end_date)} nights</div>
-							<div id='total'>${thisHome.price * dateDiff(start_date, end_date)}</div>
+							<div id='price-per-night'>${thisHome?.price} x {dateDiff(start_date, end_date)} nights</div>
+							<div id='total'>${thisHome?.price * dateDiff(start_date, end_date)}</div>
 						</div>
 						<div id='costs-service'>
 							<div id='price-per-night'>Service fee</div>
-							<div id='total'>${Math.round((thisHome.price * dateDiff(start_date, end_date)) * 0.03)}</div>
+							<div id='total'>${Math.round((thisHome?.price * dateDiff(start_date, end_date)) * 0.03)}</div>
 						</div>
 						<div id='costs-total'>
 							<div id='total-tag'>Total before taxes</div>
-							<div id='total-tag'>${(thisHome.price * dateDiff(start_date, end_date)) + (Math.round((thisHome.price * dateDiff(start_date, end_date)) * 0.03))}</div>
+							<div id='total-tag'>${(thisHome?.price * dateDiff(start_date, end_date)) + (Math.round((thisHome?.price * dateDiff(start_date, end_date)) * 0.03))}</div>
 						</div>
 					</form>
 				</div>

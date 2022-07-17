@@ -18,6 +18,7 @@ import BookingListing from './components/bookings/BookingListing/BookingListing'
 import EditBooking from './components/bookings/EditBooking/EditBooking';
 import gitHub from './components/images/github.png'
 import linkedin from './components/images/linkedin.png'
+import homeIcon from './components/images/homeIcon.png'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -43,8 +44,11 @@ function App() {
       <Switch>
         <Route path='/login' exact={true}>
           <div id='forms'>
-            <LoginForm />
-            <SignUpForm />
+            <div id='title-banner'><img id='title-image' src={homeIcon}></img></div>
+            <div id='forms-container'>
+              <LoginForm />
+              <SignUpForm />
+            </div>
           </div>
         </Route>
         {/* <Route path='/sign-up' exact={true}>
@@ -80,6 +84,7 @@ function App() {
           <div id='footer-header'>Contact Info</div>
           <div id='footer-item'>Eric Geagan</div>
           <div id='footer-item'>ericgeagan@gmail.com</div>
+          <a id='tech-link' href="https://www.flaticon.com/free-icons/home" title="home icons">Home icons created by hqrloveq - Flaticon</a>
         </div>
         <div id='footer-container'>
           <div id='footer-header'>Developer Links</div>
@@ -95,6 +100,33 @@ function App() {
         </div>
         <div id='footer-container'>
           <div id='footer-header'>Technologies</div>
+          <div id='footer-link'>
+            <a id='tech-link' href='https://docs.python.org/3/index.html'>Python</a>
+          </div>
+          <div id='footer-link'>
+            <a id='tech-link' href='https://flask.palletsprojects.com/en/1.1.x/'>Flask</a>
+          </div>
+          <div id='footer-link'>
+            <a id='tech-link' href='https://wtforms.readthedocs.io/en/2.3.x/'>WTForms</a>
+          </div>
+          <div id='footer-link'>
+            <a id='tech-link' href='https://flask-wtf.readthedocs.io/en/stable/'>FlaskWTF</a>
+          </div>
+          <div id='footer-link'>
+            <a id='tech-link' href='https://flask-migrate.readthedocs.io/en/latest/'>Flask-Migrate</a>
+          </div>
+          <div id='footer-link'>
+            <a id='tech-link' href='https://flask-sqlalchemy.palletsprojects.com/en/2.x/'>FlaskSQLAlchemy</a>
+          </div>
+          <div id='footer-link'>
+            <a id='tech-link' href='https://alembic.sqlalchemy.org/en/latest/'>Alembic</a>
+          </div>
+          <div id='footer-link'>
+            <a id='tech-link' href='https://reactjs.org/docs/getting-started.html'>React</a>
+          </div>
+          <div id='footer-link'>
+            <a id='tech-link' href='https://github.com/boto/boto3'>Boto3 AWS</a>
+          </div>
         </div>
       </div>
     </BrowserRouter>

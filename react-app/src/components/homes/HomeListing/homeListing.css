@@ -36,16 +36,16 @@ h1 {
 	padding: 24px;
 	box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 	margin-left: 100px;
-	height: 420px;
+	height: 440px;
+}
+
+.booking-error {
+	overflow-wrap: break-word;
+	width: 300px;
 }
 
 #details-header {
 	border-bottom: 1px solid lightgrey;
-}
-
-#details-amenities-header {
-	padding-top: 48px;
-	padding-bottom: 24px;
 }
 
 #details-beds {
@@ -78,6 +78,7 @@ h1 {
 
 #dates {
 	display: flex;
+	margin-top: 12px;
 }
 
 #input-div {
@@ -203,6 +204,7 @@ h1 {
 	font-weight: 600;
 	line-height: 30px;
 	padding-bottom: 12px;
+	margin-top: 24px;
 }
 
 #hosted {
@@ -219,9 +221,10 @@ h1 {
 	font-weight: 400;
 	line-height: 24px;
 	line-break: strict;
-	overflow-x: hidden;
+	/* overflow-x: hidden;
 	overflow-y: hidden;
-	text-overflow: ellipsis;
+	text-overflow: ellipsis; */
+	overflow-wrap: break-word;
 	width: 500px;
 	padding-bottom: 24px;
 	border-bottom: 1px solid lightgrey;
@@ -234,6 +237,12 @@ h1 {
 	line-height: 20px;
 }
 
+#buttons-div {
+	display: flex;
+	flex-direction: column;
+	margin-top: 24px;
+}
+
 #details-amenities {
 	border-bottom: 1px solid lightgrey;
 }
@@ -243,6 +252,8 @@ h1 {
 	font-size: 22px;
 	font-weight: 600;
 	line-height: 26px;
+	padding-top: 24px;
+	padding-bottom: 24px;
 }
 
 #amenity {

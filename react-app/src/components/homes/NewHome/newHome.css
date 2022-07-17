@@ -1,0 +1,38 @@
+#new-home {
+	width: 500px;
+	height: 950px;
+	margin-right: 50px;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	background-color: white;
+	box-shadow: rgb(0 0 0 / 75%) 0px 6px 16px;
+	padding-top: 20px;
+	align-items: center;
+	justify-content: center;
+	margin: auto;
+	margin-top: 24px;
+	margin-bottom: 48px;
+}
+
+#form-box label {
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+#form-box input {
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+textarea {
+	resize: none;
+	width: 252px;
+}
+
+#file {
+	color: #E61E4D;
+}
+
+#home-input {
+	width: 250px;
+}

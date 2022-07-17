@@ -9,6 +9,31 @@
 	padding-top: 20px;
 }
 
+#form-header {
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+	font-size: 30px;
+	align-self: center;
+	text-align: center;
+}
+
+#notice {
+	display: flex;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+	font-size: 14px;
+	font-weight: 600;
+	justify-content: center;
+	margin-bottom: 10px;
+}
+
+#required {
+	color: red;
+}
+
+#notice p {
+	margin: 0;
+	color: red;
+}
+
 #form {
 	display: flex;
 	flex-direction: column;
@@ -25,14 +50,14 @@
 	font-weight: 600;
 }
 
+#form-container input {
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 #form-box {
 	display: flex;
 	justify-content: space-between;
 	margin-left: 20px;
-}
-
-#form-container input {
-
 }
 
 #errors {

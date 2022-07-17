@@ -1,8 +1,11 @@
 #home-card-container {
-	display: grid;
-	grid-template-columns: auto auto auto auto;
-	column-gap: 30px;
-	row-gap: 50px;
+	margin-bottom: 96px;
+	flex-wrap: wrap;
+	width: 80%;
+	display: flex;
+	grid-gap: 35px;
+	gap: 35px;
+	justify-content: center;
 }
 
 #body-container {

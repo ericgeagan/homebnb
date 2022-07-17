@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { addHomeThunk } from "../../../store/homes";
+import './newHome.css'
 
 const NewHome = () => {
 	const sessionUser = useSelector(state => state.session.user)
@@ -11,13 +12,13 @@ const NewHome = () => {
 	const [address, setAddress] = useState('')
 	const [city, setCity] = useState('')
 	const [state, setState] = useState('')
-	const [zipcode, setZipcode] = useState('')
-	const [bedrooms, setBedrooms] = useState(0)
-	const [bathrooms , setBathrooms] = useState(0)
-	const [beds, setBeds] = useState(0)
-	const [max_guests, setMax_guests] = useState(0)
+	const [zipcode, setZipcode] = useState(null)
+	const [bedrooms, setBedrooms] = useState(1)
+	const [bathrooms , setBathrooms] = useState(1)
+	const [beds, setBeds] = useState(1)
+	const [max_guests, setMax_guests] = useState(1)
 	const [description, setDescription] = useState('')
-	const [price, setPrice] = useState(0)
+	const [price, setPrice] = useState(1)
 	const [tv, setTv] = useState(false)
 	const [ac, setAc] = useState(false)
 	const [wifi, setWifi] = useState(false)
@@ -30,6 +31,10 @@ const NewHome = () => {
 	const [parking, setParking] = useState(false)
 	let [pic1, setPic1] = useState(null)
 	const [errors, setErrors] = useState([])
+
+	if (!sessionUser) {
+		history.push('/')
+	}
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
@@ -92,185 +97,252 @@ const NewHome = () => {
 	}
 
 	return (
-		<div>
-			<h1>Create a Home Listing</h1>
-			{errors.length > 0 && 
-				<ul>
-					<p>Please fix the following errors:</p>
-					{errors.map((error, idx) => <li key={idx}>{error}</li>)}
-				</ul>
-			}
-			<form onSubmit={e => handleSubmit(e)}>
-				<label>Home Name:</label>
-				<input
-					name='name'
-					value={name}
-					onChange={e => setName(e.target.value)}
-					type='text'
-					placeholder="Home Name Here"
-				></input>
-				<label>Address:</label>
-				<input
-					name='address'
-					value={address}
-					onChange={e => setAddress(e.target.value)}
-					type='text'
-					placeholder="Address"
-				></input>
-				<label>City:</label>
-				<input
-					name='city'
-					value={city}
-					onChange={e => setCity(e.target.value)}
-					type='text'
-					placeholder="City"
-				></input>
-				<label>State:</label>
-				<input
-					name='state'
-					value={state}
-					onChange={e => setState(e.target.value)}
-					type='text'
-					placeholder="State"
-				></input>
-				<label>Zipcode:</label>
-				<input
-					name='zipcode'
-					value={zipcode}
-					onChange={e => setZipcode(e.target.value)}
-					type='number'
-					max='99999'
-					placeholder="Zipcode"
-				></input>
-				<label>Bedrooms:</label>
-				<input
-					name='bedrooms'
-					value={bedrooms}
-					onChange={e => setBedrooms(e.target.value)}
-					type='number'
-					min={1}
-				></input>
-				<label>Bathrooms:</label>
-				<input
-					name='bathrooms'
-					value={bathrooms}
-					onChange={e => setBathrooms(e.target.value)}
-					type='number'
-					min={1}
-				></input>
-				<label>Beds:</label>
-				<input
-					name='beds'
-					value={beds}
-					onChange={e => setBeds(e.target.value)}
-					type='number'
-					min={1}
-				></input>
-				<label>Max Guests:</label>
-				<input
-					name='max_guests'
-					value={max_guests}
-					onChange={e => setMax_guests(e.target.value)}
-					type='number'
-					min={1}
-				></input>
-				<label>Description:</label>
-				<textarea
-					rows={5}
-					cols={25}
-					name='description'
-					value={description}
-					onChange={e => setDescription(e.target.value)}
-					type='text'
-					placeholder="Description"
-				></textarea>
-				<label>Price:</label>
-				<input
-					name='price'
-					value={price}
-					onChange={e => setPrice(e.target.value)}
-					type='number'
-					min={1}
-				></input>
-				<label>TV</label>
-				<input
-					name='tv'
-					checked={tv}
-					onChange={e => setTv(!tv)}
-					type='checkbox'
-				></input>
-				<label>AC</label>
-				<input
-					name='ac'
-					checked={ac}
-					onChange={e => setAc(!ac)}
-					type='checkbox'
-				></input>
-				<label>Wifi</label>
-				<input
-					name='wifi'
-					checked={wifi}
-					onChange={e => setWifi(!wifi)}
-					type='checkbox'
-				></input>
-				<label>Workspace</label>
-				<input
-					name='workspace'
-					checked={workspace}
-					onChange={e => setWorkspace(!workspace)}
-					type='checkbox'
-				></input>
-				<label>Kitchen</label>
-				<input
-					name='kitchen'
-					checked={kitchen}
-					onChange={e => setKitchen(!kitchen)}
-					type='checkbox'
-				></input>
-				<label>Fridge</label>
-				<input
-					name='fridge'
-					checked={fridge}
-					onChange={e => setFridge(!fridge)}
-					type='checkbox'
-				></input>
-				<label>Microwave</label>
-				<input
-					name='microwave'
-					checked={microwave}
-					onChange={e => setMicrowave(!microwave)}
-					type='checkbox'
-				></input>
-				<label>Utensils</label>
-				<input
-					name='utensils'
-					checked={utensils}
-					onChange={e => setUtensils(!utensils)}
-					type='checkbox'
-				></input>
-				<label>Grill</label>
-				<input
-					name='grill'
-					checked={grill}
-					onChange={e => setGrill(!grill)}
-					type='checkbox'
-				></input>
-				<label>Parking</label>
-				<input
-					name='parking'
-					checked={parking}
-					onChange={e => setParking(!parking)}
-					type='checkbox'
-				></input>
-				<label>Image 1</label>
-				<input
-					name='pic1'
-					accept="image/*"
-					onChange={updatePic1}
-					type='file'
-					placeholder="Image 1"
-				></input>
-				<button type='submit'>Submit</button>
+		<div id='new-home'>
+			<div id='form-header'>Create a Home Listing</div>
+			<div id='notice'><p>Required fields</p>&nbsp;are in red and marked with an&nbsp;<p>*</p></div>
+			<form id='form' onSubmit={e => handleSubmit(e)}>
+				<div id='errors'>
+          {errors.map((error, ind) => (
+            <div id='error' key={ind}>{error}</div>
+          ))}
+        </div>
+				<div id='form-box'>
+					<label id='required'>Home Name *</label>
+					<input
+						id='home-input'
+						name='name'
+						value={name}
+						onChange={e => setName(e.target.value)}
+						type='text'
+						placeholder="Home Name Here"
+						required
+					></input>
+				</div>
+				<div id='form-box'>
+					<label id='required'>Address *</label>
+					<input
+						id='home-input'
+						name='address'
+						value={address}
+						onChange={e => setAddress(e.target.value)}
+						type='text'
+						placeholder="Address"
+						required
+					></input>
+				</div>
+				<div id='form-box'>
+					<label id='required'>City *</label>
+					<input
+						id='home-input'
+						name='city'
+						value={city}
+						onChange={e => setCity(e.target.value)}
+						type='text'
+						placeholder="City"
+						required
+					></input>
+				</div>
+				<div id='form-box'>
+					<label id='required'>State *</label>
+					<input
+						id='home-input'
+						name='state'
+						value={state}
+						onChange={e => setState(e.target.value)}
+						type='text'
+						placeholder="State"
+						required
+					></input>
+				</div>
+				<div id='form-box'>
+					<label id='required'>Zipcode *</label>
+					<input
+						id='home-input'
+						name='zipcode'
+						value={zipcode}
+						onChange={e => setZipcode(e.target.value)}
+						type='number'
+						max={99999}
+						min={0}
+						placeholder='Zipcode'
+						required
+					></input>
+				</div>
+				<div id='form-box'>
+					<label id='required'>Bedrooms *</label>
+					<input
+						id='home-input'
+						name='bedrooms'
+						value={bedrooms}
+						onChange={e => setBedrooms(e.target.value)}
+						type='number'
+						min={1}
+						required
+					></input>
+				</div>
+				<div id='form-box'>
+					<label id='required'>Bathrooms *</label>
+					<input
+						id='home-input'
+						name='bathrooms'
+						value={bathrooms}
+						onChange={e => setBathrooms(e.target.value)}
+						type='number'
+						min={1}
+						required
+					></input>
+				</div>
+				<div id='form-box'>
+					<label id='required'>Beds *</label>
+					<input
+						id='home-input'
+						name='beds'
+						value={beds}
+						onChange={e => setBeds(e.target.value)}
+						type='number'
+						min={1}
+						required
+					></input>
+				</div>
+				<div id='form-box'>
+					<label id='required'>Max Guests *</label>
+					<input
+						id='home-input'
+						name='max_guests'
+						value={max_guests}
+						onChange={e => setMax_guests(e.target.value)}
+						type='number'
+						min={1}
+						required
+					></input>
+				</div>
+				<div id='form-box'>
+					<label id='required'>Description *</label>
+					<textarea
+						rows={5}
+						cols={25}
+						name='description'
+						value={description}
+						onChange={e => setDescription(e.target.value)}
+						type='text'
+						required
+					></textarea>
+				</div>			
+				<div id='form-box'>
+					<label id='required'>Price *</label>
+					<input
+						id='home-input'
+						name='price'
+						value={price}
+						onChange={e => setPrice(e.target.value)}
+						type='number'
+						min={1}
+						required
+					></input>
+				</div>							
+				<div id='form-box'>
+					<label>TV</label>
+					<input
+						name='tv'
+						checked={tv}
+						onChange={e => setTv(!tv)}
+						type='checkbox'
+					></input>
+				</div>
+				<div id='form-box'>
+					<label>AC</label>
+					<input
+						name='ac'
+						checked={ac}
+						onChange={e => setAc(!ac)}
+						type='checkbox'
+					></input>
+				</div>
+				<div id='form-box'>
+					<label>Wifi</label>
+					<input
+						name='wifi'
+						checked={wifi}
+						onChange={e => setWifi(!wifi)}
+						type='checkbox'
+					></input>
+				</div>
+				<div id='form-box'>
+					<label>Workspace</label>
+					<input
+						name='workspace'
+						checked={workspace}
+						onChange={e => setWorkspace(!workspace)}
+						type='checkbox'
+					></input>
+				</div>
+				<div id='form-box'>
+					<label>Kitchen</label>
+					<input
+						name='kitchen'
+						checked={kitchen}
+						onChange={e => setKitchen(!kitchen)}
+						type='checkbox'
+					></input>
+				</div>
+				<div id='form-box'>
+					<label>Fridge</label>
+					<input
+						name='fridge'
+						checked={fridge}
+						onChange={e => setFridge(!fridge)}
+						type='checkbox'
+					></input>
+				</div>			
+				<div id='form-box'>
+					<label>Microwave</label>
+					<input
+						name='microwave'
+						checked={microwave}
+						onChange={e => setMicrowave(!microwave)}
+						type='checkbox'
+					></input>
+				</div>		
+				<div id='form-box'>
+					<label>Utensils</label>
+					<input
+						name='utensils'
+						checked={utensils}
+						onChange={e => setUtensils(!utensils)}
+						type='checkbox'
+					></input>
+				</div>		
+				<div id='form-box'>
+					<label>Grill</label>
+					<input
+						name='grill'
+						checked={grill}
+						onChange={e => setGrill(!grill)}
+						type='checkbox'
+					></input>
+				</div>		
+				<div id='form-box'>
+					<label>Parking</label>
+					<input
+						name='parking'
+						checked={parking}
+						onChange={e => setParking(!parking)}
+						type='checkbox'
+					></input>
+				</div>		
+				<div id='form-box'>
+					<label id="required">Image *</label>
+					<input
+						id='file'
+						name='pic1'
+						accept="image/*"
+						onChange={updatePic1}
+						type='file'
+						placeholder="Image 1"
+						required
+					></input>
+				</div>																																			
+				<button id='reserve' type='submit'>Submit</button>
 			</form>
 		</div>
 	)

@@ -31,8 +31,13 @@ const LoginForm = () => {
     return <Redirect to='/' />;
   }
 
+  const demoUserLogin = async (e) => {
+    const data = await dispatch(login("demo@aa.io", "password"));
+  }
+
   return (
     <div id='form-container'>
+      <div id='form-header'>Log In</div>
       <form id='form' onSubmit={onLogin}>
         <div id='errors'>
           {errors.map((error, ind) => (
@@ -40,7 +45,7 @@ const LoginForm = () => {
           ))}
         </div>
         <div id='form-box'>
-          <label htmlFor='email'>Email</label>
+          <label id='required'  htmlFor='email'>Email *</label>
           <input
             name='email'
             type='text'
@@ -50,7 +55,7 @@ const LoginForm = () => {
           />
         </div>
         <div id='form-box'>
-          <label htmlFor='password'>Password</label>
+          <label id='required' htmlFor='password'>Password *</label>
           <input
             name='password'
             type='password'
@@ -60,6 +65,7 @@ const LoginForm = () => {
           />
         </div>
         <button id='reserve' type='submit'>Login</button>
+        <button id='reserve' type='button' onClick={demoUserLogin}>Demo User</button>
       </form>
     </div>
   );

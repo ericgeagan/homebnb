@@ -27,9 +27,9 @@ const BookingListing = () => {
 		<div id='container'>
 			{bookings.map(booking => (
 				<div>
-					<div>{booking.guests} Guests at {homes[booking.home_id].name}</div>
-					<button onClick={() => handleEditButton(booking.id)}>Edit</button>
-					<button onClick={() => handleDelete(booking.id)}>Delete</button>
+					<div>{booking?.guests} Guests at {homes[booking?.home_id]?.name}</div>
+					<button onClick={() => handleEditButton(booking?.id)}>Edit</button>
+					<button onClick={() => handleDelete(booking?.id)}>Delete</button>
 				</div>
 			))}
 		</div>

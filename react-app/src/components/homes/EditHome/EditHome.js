@@ -90,7 +90,7 @@ const EditHome = () => {
 		if (data) {
 			setErrors(data)
 		} else {
-			history.push('/')
+			history.push(`/homes/${thisHome.id}`)
 		}
 	}
 
