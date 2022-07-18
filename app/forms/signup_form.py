@@ -10,7 +10,7 @@ def user_exists(form, field):
     user = User.query.filter(User.email == email).first()
     if user:
         raise ValidationError('Email address is already in use.')
-    if len(user) > 255:
+    if len(email) > 255:
         raise ValidationError('Email address cannot be longer than 255 characters.')
 
 def username_exists(form, field):
@@ -19,7 +19,7 @@ def username_exists(form, field):
     user = User.query.filter(User.username == username).first()
     if user:
         raise ValidationError('Username is already in use.')
-    if len(user) > 40:
+    if len(username) > 40:
         raise ValidationError('Username cannot be longer than 40 characters.')
 
 def valid_email(form, field):
