@@ -46,18 +46,27 @@ const HomeListing = () => {
 		return diffDays
 	}
 
+	const dateBetween = (start, end, check) => {
+		const startDate = new Date(start)
+		const endDate = new Date(end)
+		const checkDate = new Date(check)
+
+		if (checkDate >= startDate && checkDate <= endDate) {
+			// Date is between the 2 dates
+			return true
+		} else {
+			return false
+		}
+	}
+
 	const existingDate = (start, end) => {
 		// console.log(bookings)
 		if (bookings.some(booking => {
-			const dateFrom = booking.start_date
-			const dateTo = booking.end_date
-			const dateCheck = start
-
-			const from = Date.parse(dateFrom)
-			const to = Date.parse(dateTo)
-			const check = Date.parse(dateCheck)
-
-			return check <= to && check >= from
+			const test1 = dateBetween(booking.start_date, booking.end_date, start)
+			const test2 = dateBetween(booking.start_date, booking.end_date, end)
+			const test3 = dateBetween(start, end, booking.start_date)
+			const test4 = dateBetween(start, end, booking.end_date)
+			return test1 || test2 || test3 || test4
 		})) {
 			return true
 		} else {

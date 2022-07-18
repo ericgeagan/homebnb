@@ -66,6 +66,7 @@ const EditBooking = () => {
 
 	const handleDelete = async (bookingId) => {
 		await dispatch(deleteBookingThunk(bookingId))
+		history.push('/bookings')
 	}
 
 	const handleEdit = async (e) => {
