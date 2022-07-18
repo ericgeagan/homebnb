@@ -14,12 +14,12 @@ const EditHome = () => {
 	const [city, setCity] = useState(thisHome?.city || '')
 	const [state, setState] = useState(thisHome?.state || '')
 	const [zipcode, setZipcode] = useState(thisHome?.zipcode || '')
-	const [bedrooms, setBedrooms] = useState(thisHome?.bedrooms || 0)
-	const [bathrooms , setBathrooms] = useState(thisHome?.bathrooms || 0)
-	const [beds, setBeds] = useState(thisHome?.beds || 0)
-	const [max_guests, setMax_guests] = useState(thisHome?.max_guests || 0)
+	const [bedrooms, setBedrooms] = useState(thisHome?.bedrooms || 1)
+	const [bathrooms , setBathrooms] = useState(thisHome?.bathrooms || 1)
+	const [beds, setBeds] = useState(thisHome?.beds || 1)
+	const [max_guests, setMax_guests] = useState(thisHome?.max_guests || 1)
 	const [description, setDescription] = useState(thisHome?.description || '')
-	const [price, setPrice] = useState(thisHome?.price || 0)
+	const [price, setPrice] = useState(thisHome?.price || 1)
 	const [tv, setTv] = useState(thisHome?.tv || false)
 	const [ac, setAc] = useState(thisHome?.ac || false)
 	const [wifi, setWifi] = useState(thisHome?.wifi || false)
@@ -183,6 +183,7 @@ const EditHome = () => {
 						onChange={e => setBedrooms(e.target.value)}
 						type='number'
 						required
+						min={1}
 					></input>
 				</div>
 				<div id='form-box'>
@@ -194,6 +195,7 @@ const EditHome = () => {
 						onChange={e => setBathrooms(e.target.value)}
 						type='number'
 						required
+						min={1}
 					></input>
 				</div>
 				<div id='form-box'>
@@ -205,6 +207,7 @@ const EditHome = () => {
 						onChange={e => setBeds(e.target.value)}
 						type='number'
 						required
+						min={1}
 					></input>
 				</div>
 				<div id='form-box'>
@@ -216,6 +219,7 @@ const EditHome = () => {
 						onChange={e => setMax_guests(e.target.value)}
 						type='number'
 						required
+						min={1}
 					></input>
 				</div>
 				<div id='form-box'>
@@ -239,6 +243,7 @@ const EditHome = () => {
 						onChange={e => setPrice(e.target.value)}
 						type='number'
 						required
+						min={1}
 					></input>
 				</div>
 				<div id='form-box'>
