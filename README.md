@@ -129,5 +129,7 @@ I'd like to implement a google maps api into my application, and do some better 
 Eric Geagan
 
 [LinkedIn](https://www.linkedin.com/in/eric-geagan-462323195/)
+
 [GitHub](https://github.com/ericgeagan)
+
 ericgeagan@gmail.com
