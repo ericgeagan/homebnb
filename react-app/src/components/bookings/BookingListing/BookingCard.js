@@ -35,7 +35,7 @@ const BookingCard = ({booking}) => {
 			<div id='home-card-text'>Address</div>
 			<div>
 				<div id='booking-info-text'>{thisHome?.address}</div>
-				<div id='booking-info-text'>{thisHome?.city}</div>
+				<div id='booking-info-text'>{thisHome?.city}, {thisHome?.state}</div>
 			</div>
 			<div id='home-card-text'>Cost: ${(thisHome?.price * dateDiff(booking?.start_date, booking?.end_date)) + (Math.round((thisHome?.price * dateDiff(booking?.start_date, booking?.end_date)) * 0.03))}</div>
 			{/* <div id='home-card-text'>{booking?.guests} Guests at {thisHome?.name}</div> */}
