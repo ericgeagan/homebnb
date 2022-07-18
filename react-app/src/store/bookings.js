@@ -117,7 +117,7 @@ const bookingReducer = (state = {}, action) => {
 			newState = { ...state, [action.booking.id]: action.booking}
 			return newState
 		case GET_BOOKINGS:
-			newState = { ...state }
+			newState = { }
 			action.bookings.bookings.forEach(booking => {
 				newState[booking.id] = booking
 			})

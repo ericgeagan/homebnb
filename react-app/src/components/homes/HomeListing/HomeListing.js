@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
-import { addBookingThunk } from "../../../store/bookings"
+import { addBookingThunk, getAllBookingsThunk } from "../../../store/bookings"
 import { deleteHomeThunk } from "../../../store/homes"
 import { getAllUsersThunk } from "../../../store/session"
 import './homeListing.css'
@@ -34,7 +34,6 @@ const HomeListing = () => {
     (async() => {
       // await dispatch(authenticate());
       // await dispatch(getAllHomesThunk())
-      // await dispatch(getAllBookingsThunk())
       await dispatch(getAllUsersThunk())
     })();
   }, [dispatch]);
@@ -97,6 +96,7 @@ const HomeListing = () => {
 
 	const handleDelete = async () => {
 		await dispatch(deleteHomeThunk(thisHome?.id))
+		await dispatch(getAllBookingsThunk())
 	}
 
 	const handleEditButton = () => {
