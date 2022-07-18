@@ -28,7 +28,7 @@ that can accommodate
 1. Clone this repository (only this branch)
 
    ```bash
-   git clone https://github.com/ericgeagan/homebnb
+   git clone https://github.com/ericgeagan/homebnb.git
    ```
 
 2. Install dependencies
@@ -77,7 +77,7 @@ The following instructions detail an *optional* development setup for M1 Mac use
 3. Clone the repository (only this branch)
 
    ```bash
-   git clone https://github.com/ericgeagan/homebnb
+   git clone https://github.com/ericgeagan/homebnb.git
    ```
 
 4. Open the repo in VS Code.
