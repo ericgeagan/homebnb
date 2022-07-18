@@ -148,7 +148,7 @@ const EditBooking = () => {
 								<input
 									name='guests'
 									type='number'
-									min={0}
+									min={1}
 									max={thisBooking?.max_guests}
 									value={guests}
 									onChange={e => setGuests(e.target.value)}
