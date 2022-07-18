@@ -12,12 +12,11 @@ const LogoutButton = () => {
   };
 
   return (
-    <div id='logout'>
-      <NavLink id='navlink' to='/login' activeClassName='active'>
+    <NavLink id='navlink' to='/login' activeClassName='active'>
+      <div id='logout' onClick={onLogout}>
         <div id='link' onClick={onLogout}>Logout</div>
-      </NavLink>
-        {/* <button onClick={onLogout}>Logout</button> */}
-    </div>
+      </div>
+    </NavLink>
   );
 };
 

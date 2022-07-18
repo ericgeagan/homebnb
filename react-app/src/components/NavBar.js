@@ -29,20 +29,20 @@ const NavBar = () => {
           </NavLink>
         </div>
         <div>
-        
         </div>
-        <div id='navs'>
           <NavLink id='navlink' to='/homes/new' exact={true} activeClassName='active'>
-            <div id='link'>Become a Host</div>
+            <div id='navs'>
+              <div id='link'>Become a Host</div>
+            </div>
           </NavLink>
-        </div>
-        <div>
-          {logged && <NavLink id='navLink' to='/bookings' exact={true} activeClassName='active'>
-            <div id='circle'>
+          {logged && <NavLink id='navlink' to='/bookings' exact={true} activeClassName='active'>
+            {/* <div id='circle'>
               <i id='profile' className="fa-solid fa-bars"></i>
+            </div> */}
+            <div id='navs'>
+              <div id='link'>Bookings</div>
             </div>
           </NavLink>}
-        </div>
         <div>
           <LogoutButton />
         </div>

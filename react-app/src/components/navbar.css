@@ -19,7 +19,7 @@
 
 #navs {
 	display: flex;
-  width: 120px;
+  /* width: 120px; */
 	height: 42px;
   position: relative;
 	font-family: Roboto, "Helvetica Neue", sans-serif;
