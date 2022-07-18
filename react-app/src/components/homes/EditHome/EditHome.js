@@ -169,7 +169,8 @@ const EditHome = () => {
 						value={zipcode}
 						onChange={e => setZipcode(e.target.value)}
 						type='number'
-						max='99999'
+						max={99999}
+						min={0}
 						placeholder="Zipcode"
 						required
 					></input>
