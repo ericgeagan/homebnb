@@ -24,6 +24,11 @@
 	font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+#checkbox {
+	height: 15px;
+	width: 15px;
+}
+
 textarea {
 	resize: none;
 	width: 252px;
@@ -31,6 +36,7 @@ textarea {
 
 #file {
 	color: #E61E4D;
+	width: 390px;
 }
 
 #home-input {

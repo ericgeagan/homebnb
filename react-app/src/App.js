@@ -78,11 +78,13 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <HomePage />
         </ProtectedRoute>
+        <ProtectedRoute>
+          <div className='not-found' id='title-message'>Page Not Found</div>
+        </ProtectedRoute>
       </Switch>
       <div id='footer'>
         <div id='footer-container'>
           <div id='footer-header'>Contact Info</div>
-          <div id='footer-item'>Eric Geagan</div>
           <div id='footer-item'>ericgeagan@gmail.com</div>
           <a id='tech-link' href="https://www.flaticon.com/free-icons/home" title="home icons">Home icons created by hqrloveq - Flaticon</a>
         </div>
@@ -92,11 +94,6 @@ function App() {
             <a href='https://github.com/ericgeagan'><img className='icon' src={gitHub}></img></a>
             <a href='https://www.linkedin.com/in/eric-geagan-462323195/'><img className='icon' src={linkedin}></img></a>
           </div>
-        </div>
-        <div id='footer-container'>
-          <div id='footer-header'>Projects</div>
-          <a id='footer-item' href='https://soundnebula.herokuapp.com/'>SoundNebula</a>
-          <a id='footer-item' href='https://better-reads-aa.herokuapp.com/'>BetterReads</a>
         </div>
         <div id='footer-container'>
           <div id='footer-header'>Technologies</div>

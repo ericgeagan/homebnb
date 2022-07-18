@@ -1,0 +1,39 @@
+#title-message {
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+	font-size: 30px;
+	align-self: center;
+	text-align: center;
+	margin-top: 48px;
+}
+
+.not-found {
+	margin-bottom: 700px;
+}
+
+#bookings-container {
+	margin-bottom: 96px;
+	flex-wrap: wrap;
+	width: 80%;
+	display: flex;
+	grid-gap: 35px;
+	gap: 35px;
+	justify-content: center;
+	margin-top: 24px;
+}
+
+#booking-info-text {
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  /* font-weight: bold; */
+  text-decoration: none;
+  color: black;
+}
+
+#booking-list-image {
+	width: 304px;
+	height: 304px;
+	border-radius: 20px;
+	object-fit: cover;
+	box-shadow: rgb(0 0 0 / 50%) 0px 6px 6px;
+	margin-bottom: 12px;
+}

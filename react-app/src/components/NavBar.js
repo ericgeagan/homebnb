@@ -29,7 +29,7 @@ const NavBar = () => {
           </NavLink>
         </div>
         <div>
-          <LogoutButton />
+        
         </div>
         <div id='navs'>
           <NavLink id='navlink' to='/homes/new' exact={true} activeClassName='active'>
@@ -42,6 +42,9 @@ const NavBar = () => {
               <i id='profile' className="fa-solid fa-bars"></i>
             </div>
           </NavLink>}
+        </div>
+        <div>
+          <LogoutButton />
         </div>
       </div>}
     </div>

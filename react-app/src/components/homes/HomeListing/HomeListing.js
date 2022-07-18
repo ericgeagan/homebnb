@@ -11,10 +11,15 @@ const HomeListing = () => {
 	const history = useHistory()
 	const dispatch = useDispatch()
 	const home_id = useParams().id
-	const thisHome = useSelector(state => state.homes)[home_id]
-  const sessionUser = useSelector(state => state.session.user)
-	const users = useSelector(state => state.session.users)
-	const bookings = Object.values(useSelector(state => state.bookings)).filter(booking => booking.home_id === thisHome.id)
+  const sessionUser = useSelector(state => state?.session?.user)
+
+	if (!sessionUser) {
+		history.push('/')
+	}
+	
+	const thisHome = useSelector(state => state?.homes)[home_id]
+	const users = useSelector(state => state?.session?.users)
+	const bookings = Object.values(useSelector(state => state?.bookings)).filter(booking => booking?.home_id === thisHome?.id)
 	const [guests, setGuests] = useState(1)
 	const [start_date, setStart_date] = useState(new Date().toISOString().substring(0, 10))
 	// const [start_date, setStart_date] = useState(new Date())
@@ -43,7 +48,7 @@ const HomeListing = () => {
 	}
 
 	const existingDate = (start, end) => {
-		console.log(bookings)
+		// console.log(bookings)
 		if (bookings.some(booking => {
 			const dateFrom = booking.start_date
 			const dateTo = booking.end_date

@@ -3,4 +3,18 @@
   height:300px;
 	object-fit: cover;
   border-radius: 20px;
+  box-shadow: rgb(0 0 0 / 50%) 0px 6px 6px;
+}
+
+#home-card-text {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+}
+
+#home-card-text:visited {
+  text-decoration: none;
+  color: black;
 }

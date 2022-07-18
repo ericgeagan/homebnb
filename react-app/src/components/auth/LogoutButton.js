@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { logout } from '../../store/session';
 
 const LogoutButton = () => {
@@ -11,7 +11,14 @@ const LogoutButton = () => {
     history.push('/login')
   };
 
-  return <button onClick={onLogout}>Logout</button>;
+  return (
+    <div id='logout'>
+      <NavLink id='navlink' to='/login' activeClassName='active'>
+        <div id='link' onClick={onLogout}>Logout</div>
+      </NavLink>
+        {/* <button onClick={onLogout}>Logout</button> */}
+    </div>
+  );
 };
 
 export default LogoutButton;

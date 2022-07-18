@@ -247,6 +247,7 @@ const NewHome = () => {
 						checked={tv}
 						onChange={e => setTv(!tv)}
 						type='checkbox'
+						id='checkbox'
 					></input>
 				</div>
 				<div id='form-box'>
@@ -256,6 +257,7 @@ const NewHome = () => {
 						checked={ac}
 						onChange={e => setAc(!ac)}
 						type='checkbox'
+						id='checkbox'
 					></input>
 				</div>
 				<div id='form-box'>
@@ -265,6 +267,7 @@ const NewHome = () => {
 						checked={wifi}
 						onChange={e => setWifi(!wifi)}
 						type='checkbox'
+						id='checkbox'
 					></input>
 				</div>
 				<div id='form-box'>
@@ -274,6 +277,7 @@ const NewHome = () => {
 						checked={workspace}
 						onChange={e => setWorkspace(!workspace)}
 						type='checkbox'
+						id='checkbox'
 					></input>
 				</div>
 				<div id='form-box'>
@@ -283,6 +287,7 @@ const NewHome = () => {
 						checked={kitchen}
 						onChange={e => setKitchen(!kitchen)}
 						type='checkbox'
+						id='checkbox'
 					></input>
 				</div>
 				<div id='form-box'>
@@ -292,6 +297,7 @@ const NewHome = () => {
 						checked={fridge}
 						onChange={e => setFridge(!fridge)}
 						type='checkbox'
+						id='checkbox'
 					></input>
 				</div>			
 				<div id='form-box'>
@@ -301,6 +307,7 @@ const NewHome = () => {
 						checked={microwave}
 						onChange={e => setMicrowave(!microwave)}
 						type='checkbox'
+						id='checkbox'
 					></input>
 				</div>		
 				<div id='form-box'>
@@ -310,6 +317,7 @@ const NewHome = () => {
 						checked={utensils}
 						onChange={e => setUtensils(!utensils)}
 						type='checkbox'
+						id='checkbox'
 					></input>
 				</div>		
 				<div id='form-box'>
@@ -319,6 +327,7 @@ const NewHome = () => {
 						checked={grill}
 						onChange={e => setGrill(!grill)}
 						type='checkbox'
+						id='checkbox'
 					></input>
 				</div>		
 				<div id='form-box'>
@@ -328,6 +337,7 @@ const NewHome = () => {
 						checked={parking}
 						onChange={e => setParking(!parking)}
 						type='checkbox'
+						id='checkbox'
 					></input>
 				</div>		
 				<div id='form-box'>

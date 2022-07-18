@@ -4,7 +4,7 @@ import HomeCard from "./HomeCard";
 import './homePage.css'
 
 const HomePage = () => {
-	const homes = Object.values(useSelector(state => state.homes))
+	const homes = Object.values(useSelector(state => state.homes)).slice(0, 8)
 	
 	return (
 		<div id='body-container'>
