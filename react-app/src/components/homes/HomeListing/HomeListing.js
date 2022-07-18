@@ -199,6 +199,7 @@ const HomeListing = () => {
 								max={thisHome?.max_guests}
 								value={guests}
 								onChange={e => setGuests(e.target.value)}
+								required
 							></input>
 						</div>
 						<button id='reserve' type='submit'>Reserve</button>

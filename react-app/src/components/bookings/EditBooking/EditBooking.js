@@ -153,6 +153,7 @@ const EditBooking = () => {
 									max={thisBooking?.max_guests}
 									value={guests}
 									onChange={e => setGuests(e.target.value)}
+									required
 								></input>
 							</div>
 							<button id='reserve' type='submit'>Update</button>
