@@ -14,12 +14,8 @@ def validation_errors_to_error_messages(validation_errors):
     errorMessages = []
     for field in validation_errors:
         for error in validation_errors[field]:
-            if field == 'email':
-                errorMessages.append(f'Please enter a valid email address.')
-            elif field == 'password':
-                errorMessages.append(f'Please enter a valid password.')
-            elif field == 'username':
-                errorMessages.append(f'Please enter a valid username.')
+            if error == 'This field is required.':
+                errorMessages.append(f'Please enter a valid {field}.')
             else:
                 errorMessages.append(f'{field}: {error}')
     return errorMessages
