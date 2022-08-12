@@ -32,6 +32,11 @@ def verify_description(form, field):
 	if len(description) > 1024:
 		raise ValidationError("Description cannot be longer than 1024 characters.")
 
+def number_length(form, field):
+	num_field = field.data
+	if (num_field > 10):
+		raise ValidationError(f'{field.name} cannot exceed 10.')
+
 class HomeForm(FlaskForm):
 	user_id = IntegerField("user_id", validators=[DataRequired()])
 	name = StringField("name", validators=[DataRequired(), check_name])
@@ -39,12 +44,12 @@ class HomeForm(FlaskForm):
 	city = StringField("city", validators=[DataRequired(), check_city])
 	state = StringField("state", validators=[DataRequired(), check_state])
 	zipcode = IntegerField("zipcode", validators=[verify_zipcode])
-	bedrooms = IntegerField("bedrooms", validators=[DataRequired()])
-	bathrooms = IntegerField("bathrooms", validators=[DataRequired()])
-	beds = IntegerField("beds", validators=[DataRequired()])
-	max_guests = IntegerField("max_guests", validators=[DataRequired()])
+	bedrooms = IntegerField("bedrooms", validators=[DataRequired(), number_length])
+	bathrooms = IntegerField("bathrooms", validators=[DataRequired(), number_length])
+	beds = IntegerField("beds", validators=[DataRequired(), number_length])
+	max_guests = IntegerField("max_guests", validators=[DataRequired(), number_length])
 	description = TextAreaField("description", validators=[DataRequired(), verify_description])
-	price = DecimalField("price", validators=[DataRequired()])
+	price = DecimalField("price", validators=[DataRequired(), number_length])
 	tv = BooleanField("tv")
 	ac = BooleanField("ac")
 	wifi = BooleanField("wifi")

@@ -14,6 +14,20 @@
 	margin-bottom: 48px;
 }
 
+#form-box2 {
+	align-self: center;
+}
+
+#form-box2 label {
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+#form-box2 input {
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 #form-box label {
 	font-family: Roboto, "Helvetica Neue", sans-serif;
 	font-size: 14px;
@@ -37,8 +51,34 @@ textarea {
 #file {
 	color: #E61E4D;
 	width: 390px;
+	opacity: 0;
+	position: absolute;
+	z-index: -1;
 }
 
 #home-input {
 	width: 250px;
+}
+
+#upload-button {
+	background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+	border: none;
+	border-radius: 5px;
+	width: 304px;
+	/* height: 48px; */
+	font-family: 'Roboto','Helvetica Neue', sans-serif;
+	font-size: 16px;
+	text-align: center;
+	font-weight: 600;
+	color: white;
+	cursor: pointer;
+	margin-bottom: 16px;
+	align-self: center;
+	display: inline-block;
+	padding-top: 16px;
+	padding-bottom: 16px;
+}
+
+#upload-button:hover {
+	background-image: radial-gradient(circle at center, #FF385C 0%, #E61E4D 27.5%, #E31C5F 40%, #D70466 57.5%, #BD1E59 75%, #BD1E59 100% );
 }

@@ -30,6 +30,8 @@ const NewHome = () => {
 	const [grill, setGrill] = useState(false)
 	const [parking, setParking] = useState(false)
 	let [pic1, setPic1] = useState(null)
+	const [activeFile, setActiveFile] = useState(false)
+	const [fileName, setFileName] = useState('')
 	const [errors, setErrors] = useState([])
 
 	if (!sessionUser) {
@@ -94,6 +96,8 @@ const NewHome = () => {
 	const updatePic1 = e => {
 		const file = e.target.files[0]
 		setPic1(file)
+		setActiveFile(true)
+		setFileName(file.name)
 	}
 
 	return (
@@ -177,6 +181,7 @@ const NewHome = () => {
 						onChange={e => setBedrooms(e.target.value)}
 						type='number'
 						min={1}
+						max={20}
 						required
 					></input>
 				</div>
@@ -189,6 +194,7 @@ const NewHome = () => {
 						onChange={e => setBathrooms(e.target.value)}
 						type='number'
 						min={1}
+						max={20}
 						required
 					></input>
 				</div>
@@ -201,6 +207,7 @@ const NewHome = () => {
 						onChange={e => setBeds(e.target.value)}
 						type='number'
 						min={1}
+						max={20}
 						required
 					></input>
 				</div>
@@ -213,6 +220,7 @@ const NewHome = () => {
 						onChange={e => setMax_guests(e.target.value)}
 						type='number'
 						min={1}
+						max={20}
 						required
 					></input>
 				</div>
@@ -237,6 +245,7 @@ const NewHome = () => {
 						onChange={e => setPrice(e.target.value)}
 						type='number'
 						min={1}
+						max={10000}
 						required
 					></input>
 				</div>							
@@ -340,8 +349,11 @@ const NewHome = () => {
 						id='checkbox'
 					></input>
 				</div>		
-				<div id='form-box'>
-					<label id="required">Image *</label>
+				<div id='form-box2'>
+					{!activeFile ? 
+						<label id="upload-button" for='file'>Image (Required)*</label> :
+						<label id="upload-button" for='file'>{fileName} Uploaded</label>		
+					}
 					<input
 						id='file'
 						name='pic1'
