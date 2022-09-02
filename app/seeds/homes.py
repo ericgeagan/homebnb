@@ -107,6 +107,110 @@ def seed_homes():
 		pic1 = 'https://homebnb.s3.us-west-2.amazonaws.com/pexels-pixabay-280222.jpg'
 	)
 
+	fifth = Home(
+		user_id = 1,
+		name = '‘The Rookery’ - Dreamy Home w/ Private Dock!',
+		address = '4444 S Dr',
+		city = 'Yelm',
+		state = 'Washington',
+		zipcode = 98576,
+		bedrooms = 3,
+		bathrooms = 2,
+		beds = 6,
+		max_guests = 10,
+		description = "Treat yourself to a picturesque Pacific Northwest trip and stay at this 3-bedroom, 2-bathroom vacation rental in Yelm. Known as the ‘Gateway to Mt. Rainier,’ Yelm offers endless opportunities to get outside — from hiking and fishing to golfing, horseback riding, and so much more. Leaving home will be near impossible; complete with kayaks, a private dock, and unobstructed lake views from the patio, deck, and fire pit sitting area, this home ensures you won't miss a single moment of being away!",
+		price = 443,
+		tv = True,
+		ac = True,
+		wifi = True,
+		workspace = True,
+		kitchen = True,
+		fridge = True,
+		microwave = True,
+		utensils = True,
+		grill = True,
+		parking = True,
+		pic1 = 'https://homebnb.s3.amazonaws.com/187109b57a6b45369c56cf99d0f38b6e.jpg'
+	)
+
+	sixth = Home(
+		user_id = 1,
+		name = 'Middle of Nowhere',
+		address = '3000 N Rd',
+		city = 'Chelan',
+		state = 'Washington',
+		zipcode = 98816,
+		bedrooms = 3,
+		bathrooms = 2,
+		beds = 5,
+		max_guests = 5,
+		description = "Surround yourself with immaculate mountain views at this 3-bedroom, 3.5-bath vacation rental, nestled on the shores of Cle Elum Lake! The home offers every on-site amenity you could desire, including a shared hot tub, fire pit, barbecue, gourmet kitchen, Smart TV, and game room. Begin the day with coffee and a walk down to the shore and end it with a relaxing soak in the hot tub and chit chat around the fire pit. If you need some adventure, hikes, breweries, and lake adventures await nearby!",
+		price = 738,
+		tv = True,
+		ac = True,
+		wifi = True,
+		workspace = True,
+		kitchen = True,
+		fridge = True,
+		microwave = True,
+		utensils = True,
+		grill = True,
+		parking = False,
+		pic1 = 'https://homebnb.s3.amazonaws.com/ba2dea3fce484c419df5ea28f72a826d.jpg'
+	)
+
+	seventh = Home(
+		user_id = 1,
+		name = 'The Rockland Lodge, Lake & Land',
+		address = '4124 E Pl',
+		city = 'Bremerton',
+		state = 'Washington',
+		zipcode = 98310,
+		bedrooms = 6,
+		bathrooms = 3,
+		beds = 12,
+		max_guests = 16,
+		description = "The Rockland Lodge was originally built in 1973 and a 2018 rustic-modern remodel freshened up its charm. A relaxing 60-min Ferry Ride from Seattle gets you to a quiet, densely wooded 20-acre property overlooking Mission Lake and the Olympic Mtns. Biannually, we host 10-20 Artists-in-Residence at the property without charge. To support this primary mission, we rent to small groups for retreats, reunions, workshops, and weddings. Thanks for supporting Artists with your rental!",
+		price = 370,
+		tv = True,
+		ac = True,
+		wifi = True,
+		workspace = True,
+		kitchen = True,
+		fridge = True,
+		microwave = True,
+		utensils = True,
+		grill = True,
+		parking = True,
+		pic1 = 'https://homebnb.s3.amazonaws.com/f17a9d592c1b44d384ae18914b1177bb.jpg'
+	)
+
+	eigth = Home (
+		user_id = 1,
+		name = 'Cottage Retreat Home in a convenient location!',
+		address = '8382 W Rd',
+		city = 'Burien',
+		state = 'Washington',
+		zipcode = 98062,
+		bedrooms = 2,
+		bathrooms = 2,
+		beds = 4,
+		max_guests = 7,
+		description = "Private and secluded retreat home with a full kitchen and entertaining amenities. Convenient location, 5 mins to Burien & 15 to DWTN Seattle, secured parking. Luxurious living w/1800 thread count linens and plush bath towels. Private backyard fire pit, BBQ grill and outdoor eating areas. Lake view from romantic primary bedroom and south facing deck. Board games, books, karaoke machine, smart tv, record player, paddle board, bikes, and kayak available. Your delight is our pleasure!",
+		price = 195,
+		tv = True,
+		ac = True,
+		wifi = True,
+		workspace = True,
+		kitchen = True,
+		fridge = True,
+		microwave = True,
+		utensils = True,
+		grill = True,
+		parking = True,
+		pic1 = 'https://homebnb.s3.amazonaws.com/3deab8f2d3f8441ea6c26a207562e4ec.jpg'
+	)
+
 	# test = Home(
 	# 	user_id = 1,
 	# 	name = 'testHome',
@@ -137,6 +241,10 @@ def seed_homes():
 	db.session.add(second)
 	db.session.add(third)
 	db.session.add(fourth)
+	db.session.add(fifth)
+	db.session.add(sixth)
+	db.session.add(seventh)
+	db.session.add(eigth)
 	db.session.commit()
 
 

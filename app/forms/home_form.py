@@ -35,12 +35,12 @@ def verify_description(form, field):
 def number_length(form, field):
 	num_field = field.data
 	if (num_field > 10):
-		raise ValidationError(f'{field.name} cannot exceed 10.')
+		raise ValidationError(f'cannot exceed 30.')
 
 def price_validator(form, field):
 	price = field.data
 	if (price > 9999):
-		raise ValidationError(f'{field.name} cannot exceed $9999')
+		raise ValidationError(f'cannot exceed $9999.')
 
 class HomeForm(FlaskForm):
 	user_id = IntegerField("user_id", validators=[DataRequired()])
