@@ -37,6 +37,11 @@ def number_length(form, field):
 	if (num_field > 10):
 		raise ValidationError(f'{field.name} cannot exceed 10.')
 
+def price_validator(form, field):
+	price = field.data
+	if (price > 9999):
+		raise ValidationError(f'{field.name} cannot exceed $9999')
+
 class HomeForm(FlaskForm):
 	user_id = IntegerField("user_id", validators=[DataRequired()])
 	name = StringField("name", validators=[DataRequired(), check_name])
@@ -49,7 +54,7 @@ class HomeForm(FlaskForm):
 	beds = IntegerField("beds", validators=[DataRequired(), number_length])
 	max_guests = IntegerField("max_guests", validators=[DataRequired(), number_length])
 	description = TextAreaField("description", validators=[DataRequired(), verify_description])
-	price = DecimalField("price", validators=[DataRequired(), number_length])
+	price = DecimalField("price", validators=[DataRequired(), price_validator])
 	tv = BooleanField("tv")
 	ac = BooleanField("ac")
 	wifi = BooleanField("wifi")
